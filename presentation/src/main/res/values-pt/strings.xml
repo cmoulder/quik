@@ -54,12 +54,12 @@
     <string name="archived_empty_text">As conversas arquivadas aparecerão aqui</string>
     <string name="main_fab_cd">Iniciar nova conversa</string>
     <string name="main_default_sms_title">SMS em grande estilo</string>
-    <string name="main_default_sms_message">Tornar QUIK a aplicação padrão para SMS</string>
+    <string name="main_default_sms_message">Tornar Messenger a aplicação padrão para SMS</string>
     <string name="main_default_sms_change">Alterar</string>
     <string name="main_permission_required">Permissão necessária</string>
-    <string name="main_permission_sms">QUIK necessita da permissão para ver e enviar as mensagens</string>
-    <string name="main_permission_contacts">QUIK necessita da permissão para ver os seus contactos</string>
-    <string name="main_permission_notifications">QUIK necessita da permissão para mostrar notificações</string>
+    <string name="main_permission_sms">Messenger necessita da permissão para ver e enviar as mensagens</string>
+    <string name="main_permission_contacts">Messenger necessita da permissão para ver os seus contactos</string>
+    <string name="main_permission_notifications">Messenger necessita da permissão para mostrar notificações</string>
     <string name="main_permission_allow">Permitir</string>
     <string name="drawer_inbox">Caixa de entrada</string>
     <string name="drawer_archived">Arquivadas</string>
@@ -69,7 +69,7 @@
     <string name="drawer_settings">Definições</string>
     <string name="drawer_help">Ajuda e comentários</string>
     <string name="drawer_invite">Convidar amigos</string>
-    <string name="rate_title">Gosta do QUIK?</string>
+    <string name="rate_title">Gosta do Messenger?</string>
     <string name="rate_summary">Mostre o seu contentamento e avalie a aplicação em GitHub!</string>
     <string name="rate_okay">OK!</string>
     <string name="rate_dismiss">Agora não</string>
@@ -250,7 +250,7 @@
     <string name="settings_mms_size_title">Comprimir anexos MMS automaticamente</string>
     <string name="settings_sync_title">Sincronizar mensagens</string>
     <string name="settings_sync_summary">Sincronizar mensagens com a base de dados nativa do Android</string>
-    <string name="settings_about_title">Acerca de QUIK</string>
+    <string name="settings_about_title">Acerca de Messenger</string>
     <string name="settings_version">Versão %s</string>
     <string name="settings_logging_enabled">Depuração ativada</string>
     <string name="settings_logging_disabled">Depuração desativada</string>
@@ -260,7 +260,7 @@
     <string name="blocking_drop_summary">Descartar mensagens enviadas pelos remetentes bloqueados em vez de as ocultar</string>
     <string name="blocking_conversations">Conversas bloqueadas</string>
     <string name="blocking_manager_title">Gestor de bloqueios</string>
-    <string name="blocking_manager_qksms_summary">Funcionalidade de bloqueio, nativa no QUIK</string>
+    <string name="blocking_manager_qksms_summary">Funcionalidade de bloqueio, nativa no Messenger</string>
     <string name="blocking_manager_call_blocker_summary">Bloquear spam, números e chamadas desconhecidas com lista negra e agendamento</string>
     <string name="blocking_manager_call_control_summary">Filtrar automaticamente as chamadas e as mensagens com a aplicação Community IQ™, com a qual pode descartar as mensagens que forem enviadas pelo \'spammers\' reconhecidos na comunidade</string>
     <string name="blocking_manager_sia_summary">Filtrar automaticamente as mensagens de números utilizando a aplicação \"Should I Answer\"</string>

@@ -26,7 +26,13 @@ interface BlockedNumbersView : QkViewContract<BlockedNumbersState> {
     fun unblockAddress(): Observable<Long>
     fun addAddress(): Observable<*>
     fun saveAddress(): Observable<String>
+    fun blockUnknownClicks(): Observable<*>
+    fun allowShortCodesClicks(): Observable<*>
+    fun shortCodeDigitsClicks(): Observable<*>
+    fun shortCodeDigitsChanged(): Observable<Int>
+    fun allowMessagedClicks(): Observable<*>
 
     fun showAddDialog()
+    fun showShortCodeDigitsDialog(current: Int)
 
 }

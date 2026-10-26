@@ -54,12 +54,12 @@
     <string name="archived_empty_text">Az archivált beszélgetései itt jelennek meg</string>
     <string name="main_fab_cd">Új beszélgetés kezdeményezése</string>
     <string name="main_default_sms_title">Szeresse meg újból az SMS-ezést</string>
-    <string name="main_default_sms_message">A QUIK beállítása alapértelmezett SMS-alkalmazásként</string>
+    <string name="main_default_sms_message">A Messenger beállítása alapértelmezett SMS-alkalmazásként</string>
     <string name="main_default_sms_change">Módosítás</string>
     <string name="main_permission_required">Engedély szükséges</string>
-    <string name="main_permission_sms">A QUIK-nek engedélyre van szüksége az SMS-ek küldéséhez és megtekintéséhez</string>
-    <string name="main_permission_contacts">A QUIK-nek engedélyre van szüksége a névjegyek megtekintéséhez</string>
-    <string name="main_permission_notifications">A QUIK-nek engedélyre van szüksége az értesítések megjelenítéséhez</string>
+    <string name="main_permission_sms">A Messenger-nek engedélyre van szüksége az SMS-ek küldéséhez és megtekintéséhez</string>
+    <string name="main_permission_contacts">A Messenger-nek engedélyre van szüksége a névjegyek megtekintéséhez</string>
+    <string name="main_permission_notifications">A Messenger-nek engedélyre van szüksége az értesítések megjelenítéséhez</string>
     <string name="main_permission_allow">Engedélyezés</string>
     <string name="drawer_inbox">Bejövő üzenetek</string>
     <string name="drawer_archived">Archivált</string>
@@ -69,7 +69,7 @@
     <string name="drawer_settings">Beállítások</string>
     <string name="drawer_help">Súgó és visszajelzés</string>
     <string name="drawer_invite">Barátok meghívása</string>
-    <string name="rate_title">Tetszik a QUIK?</string>
+    <string name="rate_title">Tetszik a Messenger?</string>
     <string name="rate_summary">Mutassa ki támogatását, és hagyjon nekünk egy csillagot a GitHubon!</string>
     <string name="rate_okay">OK!</string>
     <string name="rate_dismiss">MELLŐZÉS</string>
@@ -248,7 +248,7 @@
     <string name="settings_mms_size_title">MMS-képmellékletek automatikus tömörítése</string>
     <string name="settings_sync_title">Üzenetek szinkronizálása</string>
     <string name="settings_sync_summary">Üzenetek újraszinkronizálása az Android natív SMS-adatbázisával</string>
-    <string name="settings_about_title">A QUIK névjegye</string>
+    <string name="settings_about_title">A Messenger névjegye</string>
     <string name="settings_version">%s verzió</string>
     <string name="settings_logging_enabled">Hibanaplózás engedélyezve</string>
     <string name="settings_logging_disabled">Hibanaplózás letiltva</string>
@@ -258,7 +258,7 @@
     <string name="blocking_drop_summary">Üzenetek eldobása a tiltott küldőktől az elrejtésük helyett</string>
     <string name="blocking_conversations">Letiltott beszélgetések</string>
     <string name="blocking_manager_title">Tiltáskezelő</string>
-    <string name="blocking_manager_qksms_summary">A QUIK beépített tiltási funkciója</string>
+    <string name="blocking_manager_qksms_summary">A Messenger beépített tiltási funkciója</string>
     <string name="blocking_manager_call_blocker_summary">Tiltja a kéretlen tartalmú üzeneteket, számokat és ismeretlen hívásokat a tiltólistával és az ütemezéssel</string>
     <string name="blocking_manager_call_control_summary">Automatikus hívás- és üzenetszűrés egy kényelmes helyen! A Community IQ™ segítségével megakadályozhatja a közösségben ismert kéretlen tartalom küldők üzeneteinek érkezését</string>
     <string name="blocking_manager_sia_summary">Automatikusan szűrheti az üzeneteket a számok alapján a „Should I Answer” alkalmazás használatával</string>

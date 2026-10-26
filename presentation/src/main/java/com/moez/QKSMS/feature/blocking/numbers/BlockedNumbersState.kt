@@ -22,5 +22,9 @@ import dev.octoshrimpy.quik.model.BlockedNumber
 import io.realm.RealmResults
 
 data class BlockedNumbersState(
-    val numbers: RealmResults<BlockedNumber>? = null
+    val numbers: RealmResults<BlockedNumber>? = null,
+    val blockUnknown: Boolean = false,
+    val allowShortCodes: Boolean = true,
+    val shortCodeDigits: Int = 7,
+    val allowMessaged: Boolean = true
 )

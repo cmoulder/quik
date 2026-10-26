@@ -81,12 +81,14 @@ class BlockedMessagesAdapter @Inject constructor(
         binding.blocker.text = when (conversation.blockingClient) {
             Preferences.BLOCKING_MANAGER_CC -> context.getString(R.string.blocking_manager_call_control_title)
             Preferences.BLOCKING_MANAGER_SIA -> context.getString(R.string.blocking_manager_sia_title)
+            Preferences.BLOCKED_BY_CONTENT_FILTER -> context.getString(R.string.blocked_by_content_filter)
+            Preferences.BLOCKED_BY_UNKNOWN_SENDER -> context.getString(R.string.blocked_by_unknown_sender)
             else -> null
         }
 
         binding.reason.text = conversation.blockReason
         binding.blocker.isVisible = binding.blocker.text.isNotEmpty()
-        binding.reason.isVisible = binding.blocker.text.isNotEmpty()
+        binding.reason.isVisible = binding.reason.text.isNotEmpty()
     }
 
     override fun getItemViewType(position: Int): Int {

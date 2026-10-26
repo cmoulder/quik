@@ -24,16 +24,30 @@ import dev.octoshrimpy.quik.common.base.QkPresenter
 import dev.octoshrimpy.quik.interactor.MarkUnblocked
 import dev.octoshrimpy.quik.repository.BlockingRepository
 import dev.octoshrimpy.quik.repository.ConversationRepository
+import dev.octoshrimpy.quik.util.Preferences
+import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class BlockedNumbersPresenter @Inject constructor(
     private val blockingRepo: BlockingRepository,
     private val conversationRepo: ConversationRepository,
-    private val markUnblocked: MarkUnblocked
+    private val markUnblocked: MarkUnblocked,
+    private val prefs: Preferences
 ) : QkPresenter<BlockedNumbersView, BlockedNumbersState>(
         BlockedNumbersState(numbers = blockingRepo.getBlockedNumbers())
 ) {
+
+    init {
+        disposables += prefs.blockUnknownSenders.asObservable()
+            .subscribe { enabled -> newState { copy(blockUnknown = enabled) } }
+        disposables += prefs.blockUnknownAllowShortCodes.asObservable()
+            .subscribe { enabled -> newState { copy(allowShortCodes = enabled) } }
+        disposables += prefs.blockUnknownShortCodeDigits.asObservable()
+            .subscribe { digits -> newState { copy(shortCodeDigits = digits) } }
+        disposables += prefs.blockUnknownAllowMessaged.asObservable()
+            .subscribe { enabled -> newState { copy(allowMessaged = enabled) } }
+    }
 
     override fun bindIntents(view: BlockedNumbersView) {
         super.bindIntents(view)
@@ -49,6 +63,27 @@ class BlockedNumbersPresenter @Inject constructor(
             .subscribeOn(Schedulers.io())
             .autoDisposable(view.scope())
             .subscribe()
+
+        view.blockUnknownClicks()
+            .autoDisposable(view.scope())
+            .subscribe { prefs.blockUnknownSenders.set(!prefs.blockUnknownSenders.get()) }
+
+        view.allowShortCodesClicks()
+            .autoDisposable(view.scope())
+            .subscribe { prefs.blockUnknownAllowShortCodes.set(!prefs.blockUnknownAllowShortCodes.get()) }
+
+        view.shortCodeDigitsClicks()
+            .autoDisposable(view.scope())
+            .subscribe { view.showShortCodeDigitsDialog(prefs.blockUnknownShortCodeDigits.get()) }
+
+        view.shortCodeDigitsChanged()
+            .filter { digits -> digits in 1..20 }
+            .autoDisposable(view.scope())
+            .subscribe { digits -> prefs.blockUnknownShortCodeDigits.set(digits) }
+
+        view.allowMessagedClicks()
+            .autoDisposable(view.scope())
+            .subscribe { prefs.blockUnknownAllowMessaged.set(!prefs.blockUnknownAllowMessaged.get()) }
 
         view.addAddress()
             .autoDisposable(view.scope())

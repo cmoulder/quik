@@ -43,15 +43,13 @@ import com.google.android.mms.util_alt.SqliteWrapper
 import com.klinker.android.send_message.MmsSentReceiver
 import com.klinker.android.send_message.SmsManagerFactory
 import com.klinker.android.send_message.Utils
-import dev.octoshrimpy.quik.blocking.BlockingClient
+import dev.octoshrimpy.quik.blocking.IncomingMessageScreener
 import dev.octoshrimpy.quik.interactor.UpdateBadge
 import dev.octoshrimpy.quik.manager.ActiveConversationManager
 import dev.octoshrimpy.quik.manager.NotificationManager
 import dev.octoshrimpy.quik.manager.ShortcutManager
 import dev.octoshrimpy.quik.receiver.MessageSentReceiver
-import dev.octoshrimpy.quik.repository.ContactRepository
 import dev.octoshrimpy.quik.repository.ConversationRepository
-import dev.octoshrimpy.quik.repository.MessageContentFilterRepository
 import dev.octoshrimpy.quik.repository.MessageRepository
 import dev.octoshrimpy.quik.repository.SyncRepository
 import dev.octoshrimpy.quik.util.Preferences
@@ -79,15 +77,13 @@ class ReceiveMmsWorker(appContext: Context, workerParams: WorkerParameters)
 
     @Inject lateinit var activeConversationManager: ActiveConversationManager
     @Inject lateinit var conversationRepo: ConversationRepository
-    @Inject lateinit var blockingClient: BlockingClient
+    @Inject lateinit var screener: IncomingMessageScreener
     @Inject lateinit var prefs: Preferences
     @Inject lateinit var syncRepo: SyncRepository
     @Inject lateinit var messageRepo: MessageRepository
     @Inject lateinit var notificationManager: NotificationManager
     @Inject lateinit var updateBadge: UpdateBadge
     @Inject lateinit var shortcutManager: ShortcutManager
-    @Inject lateinit var filterRepo: MessageContentFilterRepository
-    @Inject lateinit var contactsRepo: ContactRepository
 
     override fun doWork(): Result {
         Timber.v("started")
@@ -164,36 +160,7 @@ class ReceiveMmsWorker(appContext: Context, workerParams: WorkerParameters)
                     // to check if it should be blocked after we've pulled it into realm. If it
                     // turns out that it should be dropped, then delete it
                     // TODO Don't store blocked messages in the first place
-                    val action = blockingClient.shouldBlock(message.address).blockingGet()
-                    val shouldDrop = prefs.drop.get()
-                    Timber.v("block=$action, drop=$shouldDrop")
-
-                    if (action is BlockingClient.Action.Block && shouldDrop) {
-                        messageRepo.deleteMessages(listOf(message.id))
-                    } else {
-                        when (action) {
-                            is BlockingClient.Action.Block -> {
-                                messageRepo.markRead(listOf(message.threadId))
-                                conversationRepo.markBlocked(
-                                    listOf(message.threadId),
-                                    prefs.blockingManager.get(),
-                                    action.reason
-                                )
-                            }
-
-                            is BlockingClient.Action.Unblock ->
-                                conversationRepo.markUnblocked(message.threadId)
-
-                            else -> Unit
-                        }
-
-                        val messageFilterAction = filterRepo.isBlocked(message.getText(), message.address, contactsRepo)
-                        if (messageFilterAction) {
-                            Timber.v("message dropped based on content filters")
-                            messageRepo.deleteMessages(listOf(message.id))
-                            return Result.failure(inputData)
-                        }
-
+                    if (screener.screen(message)) {
                         // update the conversation
                         conversationRepo.updateConversations(listOf(message.threadId))
                         val conversation =
@@ -205,10 +172,6 @@ class ReceiveMmsWorker(appContext: Context, workerParams: WorkerParameters)
                             Timber.v("no notifications for blocked")
                             return Result.success(inputData)
                         }
-
-                        // unarchive conversation if necessary
-                        if (conversation.archived)
-                            conversationRepo.markUnarchived(listOf(conversation.id))
 
                         // unarchive conversation if necessary
                         if (conversation.archived) {

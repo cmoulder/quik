@@ -81,6 +81,11 @@ class Preferences @Inject constructor(
         const val BLOCKING_MANAGER_SIA = 2
         const val BLOCKING_MANAGER_CB = 3
 
+        // Not blocking managers. Stored in Conversation.blockingClient to record which built-in
+        // rule hid a conversation, so the rule can be shown and undone correctly
+        const val BLOCKED_BY_CONTENT_FILTER = 100
+        const val BLOCKED_BY_UNKNOWN_SENDER = 101
+
         const val MESSAGE_LINK_HANDLING_BLOCK = 0
         const val MESSAGE_LINK_HANDLING_ALLOW = 1
         const val MESSAGE_LINK_HANDLING_ASK = 2
@@ -114,6 +119,11 @@ class Preferences @Inject constructor(
     val textSize = rxPrefs.getInteger("textSize", TEXT_SIZE_NORMAL)
     val blockingManager = rxPrefs.getInteger("blockingManager", BLOCKING_MANAGER_QKSMS)
     val drop = rxPrefs.getBoolean("drop", false)
+    val dropContentFiltered = rxPrefs.getBoolean("dropContentFiltered", false)
+    val blockUnknownSenders = rxPrefs.getBoolean("blockUnknownSenders", false)
+    val blockUnknownAllowShortCodes = rxPrefs.getBoolean("blockUnknownAllowShortCodes", true)
+    val blockUnknownShortCodeDigits = rxPrefs.getInteger("blockUnknownShortCodeDigits", 7)
+    val blockUnknownAllowMessaged = rxPrefs.getBoolean("blockUnknownAllowMessaged", true)
     val silentNotContact = rxPrefs.getBoolean("silentNotContact", false)
     val notifAction1 = rxPrefs.getInteger("notifAction1", NOTIFICATION_ACTION_READ)
     val notifAction2 = rxPrefs.getInteger("notifAction2", NOTIFICATION_ACTION_REPLY)

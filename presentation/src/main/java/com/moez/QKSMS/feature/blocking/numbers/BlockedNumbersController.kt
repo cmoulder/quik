@@ -20,7 +20,11 @@ package dev.octoshrimpy.quik.feature.blocking.numbers
 
 import android.view.LayoutInflater
 import android.view.View
+import android.text.InputType
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.FrameLayout
+import androidx.core.view.isVisible
 import androidx.appcompat.app.AlertDialog
 import com.jakewharton.rxbinding2.view.clicks
 import dev.octoshrimpy.quik.R
@@ -46,6 +50,7 @@ class BlockedNumbersController : QkController<BlockedNumbersControllerBinding, B
 
     private val adapter = BlockedNumbersAdapter()
     private val saveAddressSubject: Subject<String> = PublishSubject.create()
+    private val shortCodeDigitsSubject: Subject<Int> = PublishSubject.create()
 
     init {
         appComponent.inject(this)
@@ -72,11 +77,51 @@ class BlockedNumbersController : QkController<BlockedNumbersControllerBinding, B
 
     override fun render(state: BlockedNumbersState) {
         adapter.updateData(state.numbers)
+
+        binding.blockUnknown.checkbox?.isChecked = state.blockUnknown
+        binding.unknownExceptions.isVisible = state.blockUnknown
+        binding.allowShortCodes.checkbox?.isChecked = state.allowShortCodes
+        binding.allowShortCodes.summary = activity?.getString(
+            R.string.blocked_numbers_allow_short_codes_summary, state.shortCodeDigits)
+        binding.shortCodeDigits.isEnabled = state.allowShortCodes
+        binding.shortCodeDigits.summary = activity?.getString(
+            R.string.blocked_numbers_short_code_digits_summary, state.shortCodeDigits)
+        binding.allowMessaged.checkbox?.isChecked = state.allowMessaged
     }
 
     override fun unblockAddress(): Observable<Long> = adapter.unblockAddress
     override fun addAddress(): Observable<*> = binding.add.clicks()
     override fun saveAddress(): Observable<String> = saveAddressSubject
+    override fun blockUnknownClicks(): Observable<*> = binding.blockUnknown.clicks()
+    override fun allowShortCodesClicks(): Observable<*> = binding.allowShortCodes.clicks()
+    override fun shortCodeDigitsClicks(): Observable<*> = binding.shortCodeDigits.clicks()
+    override fun shortCodeDigitsChanged(): Observable<Int> = shortCodeDigitsSubject
+    override fun allowMessagedClicks(): Observable<*> = binding.allowMessaged.clicks()
+
+    override fun showShortCodeDigitsDialog(current: Int) {
+        val context = activity ?: return
+        val padding = (24 * context.resources.displayMetrics.density).toInt()
+        val input = EditText(context).apply {
+            inputType = InputType.TYPE_CLASS_NUMBER
+            setText(current.toString())
+            setSelection(text.length)
+            hint = context.getString(R.string.blocked_numbers_short_code_digits_hint)
+        }
+        val container = FrameLayout(context).apply {
+            setPadding(padding, padding / 2, padding, 0)
+            addView(input)
+        }
+
+        AlertDialog.Builder(context)
+            .setTitle(R.string.blocked_numbers_short_code_digits_title)
+            .setMessage(R.string.blocked_numbers_short_code_digits_hint)
+            .setView(container)
+            .setPositiveButton(android.R.string.ok) { _, _ ->
+                input.text.toString().toIntOrNull()?.let(shortCodeDigitsSubject::onNext)
+            }
+            .setNegativeButton(R.string.button_cancel) { _, _ -> }
+            .show()
+    }
 
     override fun showAddDialog() {
         val layout = BlockedNumbersAddDialogBinding.inflate(LayoutInflater.from(activity))

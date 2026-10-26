@@ -54,12 +54,12 @@
     <string name="archived_empty_text">Arkistoimasi keskustelut näkyvät tässä</string>
     <string name="main_fab_cd">Aloita uusi keskustelu</string>
     <string name="main_default_sms_title">Rakastu tekstaamiseen uudelleen</string>
-    <string name="main_default_sms_message">Tee QUIK:stä oletusviestintäsovelluksesi</string>
+    <string name="main_default_sms_message">Tee Messenger:stä oletusviestintäsovelluksesi</string>
     <string name="main_default_sms_change">Muuta</string>
     <string name="main_permission_required">Käyttöoikeus tarvitaan</string>
-    <string name="main_permission_sms">QUIK tarvitsee oikeuden tekstiviestien lähettämiseen ja tarkastelemiseen</string>
-    <string name="main_permission_contacts">QUIK tarvitsee oikeuden yhteystietojesi tarkatelemiseen</string>
-    <string name="main_permission_notifications">QUIK needs permission to display notifications</string>
+    <string name="main_permission_sms">Messenger tarvitsee oikeuden tekstiviestien lähettämiseen ja tarkastelemiseen</string>
+    <string name="main_permission_contacts">Messenger tarvitsee oikeuden yhteystietojesi tarkatelemiseen</string>
+    <string name="main_permission_notifications">Messenger needs permission to display notifications</string>
     <string name="main_permission_allow">Salli</string>
     <string name="drawer_inbox">Saapuneet</string>
     <string name="drawer_archived">Arkistoidut</string>
@@ -69,7 +69,7 @@
     <string name="drawer_settings">Asetukset</string>
     <string name="drawer_help">Apu ja palaute</string>
     <string name="drawer_invite">Kutsu kavereita</string>
-    <string name="rate_title">Tykkäätkö QUIK:tä?</string>
+    <string name="rate_title">Tykkäätkö Messenger:tä?</string>
     <string name="rate_summary">Jaa rakkautta ja arvostele meidät Google Playssä!</string>
     <string name="rate_okay">OKEI!</string>
     <string name="rate_dismiss">HYLKÄÄ</string>
@@ -248,7 +248,7 @@
     <string name="settings_mms_size_title">Pakkaa multimediaviestien liitteet automaattisesti</string>
     <string name="settings_sync_title">Synkronoi viestit</string>
     <string name="settings_sync_summary">Synkronoi viestisi uudelleen Androidin oman SMS-tietokannan kanssa</string>
-    <string name="settings_about_title">Tietoja QUIK:tä</string>
+    <string name="settings_about_title">Tietoja Messenger:tä</string>
     <string name="settings_version">Versio %s</string>
     <string name="settings_logging_enabled">Virheenkorjauslokien kirjaaminen käytössä</string>
     <string name="settings_logging_disabled">Virheenkorjauslokien kirjaaminen pois käytöstä</string>
@@ -258,7 +258,7 @@
     <string name="blocking_drop_summary">Pudottaa estettyjen yhteystietojen lähettämät viestit, niiden piilottamisen sijasta</string>
     <string name="blocking_conversations">Estetyt keskustelut</string>
     <string name="blocking_manager_title">Estojen hallinta</string>
-    <string name="blocking_manager_qksms_summary">QUIK:ään sisäänrakennettu esto-toiminto</string>
+    <string name="blocking_manager_qksms_summary">Messenger:ään sisäänrakennettu esto-toiminto</string>
     <string name="blocking_manager_call_blocker_summary">Block spam messages, numbers &amp; unknown calls with blacklist &amp; Schedule</string>
     <string name="blocking_manager_call_control_summary">Suodata puhelusi ja soittosi automaattisesti, yhdessä kätevässä paikassa! Community IQ™ antaa sinun estää haluamattomia viestejä, yhteisölle tutuilta roskapostin lähettäjiltä</string>
     <string name="blocking_manager_sia_summary">Suodata haluamattomien numeroin lähettämät viestit automaattisesti, \"Should I Answer\" -sovellusta käyttämällä</string>

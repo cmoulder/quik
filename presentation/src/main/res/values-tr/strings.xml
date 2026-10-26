@@ -54,12 +54,12 @@
     <string name="archived_empty_text">Arşivlenmiş konuşmalarınız burada görünür</string>
     <string name="main_fab_cd">Yeni konuşma başlat</string>
     <string name="main_default_sms_title">Yine iletileşmeyi seviyorum</string>
-    <string name="main_default_sms_message">QUIK varsayılan SMS uygulaması yap</string>
+    <string name="main_default_sms_message">Messenger varsayılan SMS uygulaması yap</string>
     <string name="main_default_sms_change">Değiştir</string>
     <string name="main_permission_required">İzin gerekli</string>
-    <string name="main_permission_sms">QUIK\'in göndermesi ve SMS iletilerini görüntülemesi için izni olması gerekir</string>
-    <string name="main_permission_contacts">QUIK kişilerinizi görüntülemek için izni olması gerekir</string>
-    <string name="main_permission_notifications">QUIK\'in bildirimleri görüntüleyebilmesi için izin gerekiyor</string>
+    <string name="main_permission_sms">Messenger\'in göndermesi ve SMS iletilerini görüntülemesi için izni olması gerekir</string>
+    <string name="main_permission_contacts">Messenger kişilerinizi görüntülemek için izni olması gerekir</string>
+    <string name="main_permission_notifications">Messenger\'in bildirimleri görüntüleyebilmesi için izin gerekiyor</string>
     <string name="main_permission_allow">İzin ver</string>
     <string name="drawer_inbox">Gelen Kutusu</string>
     <string name="drawer_archived">Arşivle</string>
@@ -69,7 +69,7 @@
     <string name="drawer_settings">Ayarlar</string>
     <string name="drawer_help">Yardım &amp; Geri bildirim</string>
     <string name="drawer_invite">Arkadaşlarınızı davet edin</string>
-    <string name="rate_title">QUIK tadını çıkarıyor musun?</string>
+    <string name="rate_title">Messenger tadını çıkarıyor musun?</string>
     <string name="rate_summary">Biraz sevgi paylaş ve Google Playden bizi oyla!</string>
     <string name="rate_okay">TAMAM!</string>
     <string name="rate_dismiss">GÖREVDEN</string>
@@ -248,7 +248,7 @@
     <string name="settings_mms_size_title">Otomatik-MMS ekleri sıkıştır</string>
     <string name="settings_sync_title"> İletileri eşitle</string>
     <string name="settings_sync_summary">İletilerinizi  Android SMS veritabanı ile yeniden senkronize edin</string>
-    <string name="settings_about_title">QUIK Hakkında</string>
+    <string name="settings_about_title">Messenger Hakkında</string>
     <string name="settings_version">Sürüm %s</string>
     <string name="settings_logging_enabled">Hata ayıklama günlüğü etkin</string>
     <string name="settings_logging_disabled">Hata ayıklama günlüğü devre dışı</string>
@@ -258,7 +258,7 @@
     <string name="blocking_drop_summary">Engellenen gönderenlerden gelen iletileri gizlemek yerine iptal edin</string>
     <string name="blocking_conversations">Engellenen konuşmalar</string>
     <string name="blocking_manager_title">Engelleme Yöneticisi</string>
-    <string name="blocking_manager_qksms_summary">QUIK\'de yerleşik engelleme işlevi</string>
+    <string name="blocking_manager_qksms_summary">Messenger\'de yerleşik engelleme işlevi</string>
     <string name="blocking_manager_call_blocker_summary">İstenmeyen iletileri, numaraları ve kara listede olan bilinmeyen çağrıları ve Zamanlamaları engelle</string>
     <string name="blocking_manager_call_control_summary">Aramalarınızı ve iletilerinizi uygun bir yerde otomatik olarak filtreleyin! Topluluk IQ™ bilinen istenmeyen mesajları önlemeye olanak sağlar</string>
     <string name="blocking_manager_sia_summary">İstenmeyen numaralardan gelen iletileri otomatik olarak filtre</string>

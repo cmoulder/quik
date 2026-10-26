@@ -23,14 +23,12 @@ import androidx.work.ListenableWorker
 import androidx.work.Worker
 import androidx.work.WorkerFactory
 import androidx.work.WorkerParameters
-import dev.octoshrimpy.quik.blocking.BlockingClient
+import dev.octoshrimpy.quik.blocking.IncomingMessageScreener
 import dev.octoshrimpy.quik.interactor.UpdateBadge
 import dev.octoshrimpy.quik.manager.ActiveConversationManager
 import dev.octoshrimpy.quik.manager.NotificationManager
 import dev.octoshrimpy.quik.manager.ShortcutManager
-import dev.octoshrimpy.quik.repository.ContactRepository
 import dev.octoshrimpy.quik.repository.ConversationRepository
-import dev.octoshrimpy.quik.repository.MessageContentFilterRepository
 import dev.octoshrimpy.quik.repository.MessageRepository
 import dev.octoshrimpy.quik.repository.ScheduledMessageRepository
 import dev.octoshrimpy.quik.repository.SyncRepository
@@ -39,7 +37,7 @@ import javax.inject.Inject
 
 class InjectionWorkerFactory @Inject constructor(
     private val conversationRepo: ConversationRepository,
-    private val blockingClient: BlockingClient,
+    private val screener: IncomingMessageScreener,
     private val prefs: Preferences,
     private val messageRepo: MessageRepository,
     private val updateBadge: UpdateBadge,
@@ -48,9 +46,6 @@ class InjectionWorkerFactory @Inject constructor(
     private val notificationManager: NotificationManager,
     private val activeConversationManager: ActiveConversationManager,
     private val syncRepo: SyncRepository,
-    private val filterRepo: MessageContentFilterRepository,
-    private val contactRepo: ContactRepository,
-
 ) : WorkerFactory() {
     override fun createWorker(
         appContext: Context,
@@ -68,27 +63,23 @@ class InjectionWorkerFactory @Inject constructor(
                 instance.scheduledMessageRepository = scheduledMessageRepository
             is ReceiveSmsWorker -> {
                 instance.conversationRepo  = conversationRepo
-                instance.blockingClient = blockingClient
+                instance.screener = screener
                 instance.prefs = prefs
                 instance.messageRepo = messageRepo
                 instance.shortcutManager = shortcutManager
                 instance.notificationManager = notificationManager
                 instance.updateBadge =  updateBadge
-                instance.filterRepo = filterRepo
-                instance.contactsRepo = contactRepo
             }
             is ReceiveMmsWorker -> {
                 instance.syncRepo = syncRepo
                 instance.activeConversationManager = activeConversationManager
                 instance.conversationRepo = conversationRepo
-                instance.blockingClient = blockingClient
+                instance.screener = screener
                 instance.prefs = prefs
                 instance.messageRepo = messageRepo
                 instance.shortcutManager = shortcutManager
                 instance.notificationManager = notificationManager
                 instance.updateBadge = updateBadge
-                instance.filterRepo = filterRepo
-                instance.contactsRepo = contactRepo
             }
         }
 

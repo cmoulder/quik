@@ -54,12 +54,12 @@
     <string name="archived_empty_text">Arsip percakapan anda akan ditampilkan di sini</string>
     <string name="main_fab_cd">Mulai percakapan baru</string>
     <string name="main_default_sms_title">Love texting again</string>
-    <string name="main_default_sms_message">Tetapkan QUIK sebagai aplikasi SMS default anda</string>
+    <string name="main_default_sms_message">Tetapkan Messenger sebagai aplikasi SMS default anda</string>
     <string name="main_default_sms_change">Ubah</string>
     <string name="main_permission_required">Membutuhkan izin</string>
-    <string name="main_permission_sms">QUIK membutuhkan izin untuk mengirim dan membaca pesan SMS</string>
-    <string name="main_permission_contacts">QUIK membutuhkan izin untuk membaca kontak anda</string>
-    <string name="main_permission_notifications">QUIK needs permission to display notifications</string>
+    <string name="main_permission_sms">Messenger membutuhkan izin untuk mengirim dan membaca pesan SMS</string>
+    <string name="main_permission_contacts">Messenger membutuhkan izin untuk membaca kontak anda</string>
+    <string name="main_permission_notifications">Messenger needs permission to display notifications</string>
     <string name="main_permission_allow">Izinkan</string>
     <string name="drawer_inbox">Kotak masuk</string>
     <string name="drawer_archived">Diarsipkan</string>
@@ -69,7 +69,7 @@
     <string name="drawer_settings">Setelan</string>
     <string name="drawer_help">Bantuan &amp; umpanbalik</string>
     <string name="drawer_invite">Undang teman</string>
-    <string name="rate_title">Menikmati QUIK?</string>
+    <string name="rate_title">Menikmati Messenger?</string>
     <string name="rate_summary">Share some love and rate us on Google Play!</string>
     <string name="rate_okay">OKE!</string>
     <string name="rate_dismiss">ABAIKAN</string>
@@ -246,7 +246,7 @@
     <string name="settings_mms_size_title">Otomatis kompres lampiran MMS</string>
     <string name="settings_sync_title">Sinkronisasi pesan</string>
     <string name="settings_sync_summary">Sinkronisasi ulang pesan anda dengan basis data aplikasi SMS Android bawaan</string>
-    <string name="settings_about_title">Tentang QUIK</string>
+    <string name="settings_about_title">Tentang Messenger</string>
     <string name="settings_version">Versi %s</string>
     <string name="settings_logging_enabled">Log awakutu diaktifkan</string>
     <string name="settings_logging_disabled">Log awakutu dinonaktifkan</string>
@@ -256,7 +256,7 @@
     <string name="blocking_drop_summary">Tolak pesan masuk dari pengirim yang diblokir</string>
     <string name="blocking_conversations">Percakapan diblokir</string>
     <string name="blocking_manager_title">Pengelola Pemblokiran</string>
-    <string name="blocking_manager_qksms_summary">Fitur pemblokiran pesan di dalam QUIK</string>
+    <string name="blocking_manager_qksms_summary">Fitur pemblokiran pesan di dalam Messenger</string>
     <string name="blocking_manager_call_blocker_summary">Blokir pesan spam, nomor &amp; panggilan tak dikenal dengan daftar hitam &amp; Jadwal</string>
     <string name="blocking_manager_call_control_summary">Otomatis menyaring panggilan dan pesan di dalam satu tempat! Community IQ™ memungkinkan anda memblokir pesan yang tidak diinginkan dari daftar spammer</string>
     <string name="blocking_manager_sia_summary">Secara otomatis menyaring pesan dari nomor yang tidak diinginkan menggunakan aplikasi \"Should I Answer\"</string>

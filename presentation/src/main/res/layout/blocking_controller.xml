@@ -61,6 +61,14 @@
             app:widget="@layout/settings_switch_widget" />
 
         <dev.octoshrimpy.quik.common.widget.PreferenceView
+            android:id="@+id/dropFiltered"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:summary="@string/blocking_drop_filtered_summary"
+            app:title="@string/blocking_drop_filtered_title"
+            app:widget="@layout/settings_switch_widget" />
+
+        <dev.octoshrimpy.quik.common.widget.PreferenceView
             android:id="@+id/blockedMessages"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

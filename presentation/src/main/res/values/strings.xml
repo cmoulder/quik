@@ -18,7 +18,7 @@
   -->
 <resources>
 
-    <string name="app_name" translatable="false">QUIK</string>
+    <string name="app_name" translatable="false">Messenger</string>
 
     <string name="shortcut_compose_long_label">New conversation</string>
     <string name="shortcut_compose_short_label">Compose</string>
@@ -70,12 +70,12 @@
     <string name="archived_empty_text">Your archived conversations will appear here</string>
     <string name="main_fab_cd">Start new conversation</string>
     <string name="main_default_sms_title">Love texting again</string>
-    <string name="main_default_sms_message">Make QUIK your default SMS app</string>
+    <string name="main_default_sms_message">Make Messenger your default SMS app</string>
     <string name="main_default_sms_change">Change</string>
     <string name="main_permission_required">Permission required</string>
-    <string name="main_permission_sms">QUIK needs permission to send and view SMS messages</string>
-    <string name="main_permission_contacts">QUIK needs permission to view your contacts</string>
-    <string name="main_permission_notifications">QUIK needs permission to display notifications</string>
+    <string name="main_permission_sms">Messenger needs permission to send and view SMS messages</string>
+    <string name="main_permission_contacts">Messenger needs permission to view your contacts</string>
+    <string name="main_permission_notifications">Messenger needs permission to display notifications</string>
     <string name="main_permission_allow">Allow</string>
 
     <string name="scheduled_menu_send_now">Send now</string>
@@ -91,7 +91,7 @@
     <string name="drawer_help">Help &amp; feedback</string>
     <string name="drawer_invite">Invite friends</string>
 
-    <string name="rate_title">Enjoying QUIK?</string>
+    <string name="rate_title">Enjoying Messenger?</string>
     <string name="rate_summary">Share some love and leave us a Star on GitHub!</string>
     <string name="rate_okay">OKAY!</string>
     <string name="rate_dismiss">DISMISS</string>
@@ -330,7 +330,7 @@
     <string name="settings_diable_screenshots_summary">Prevent your OS and other apps from taking screenshots of the app.</string>
     <string name="settings_sync_title">Sync messages</string>
     <string name="settings_sync_summary">Re-sync your messages with the native Android SMS database</string>
-    <string name="settings_about_title">About QUIK</string>
+    <string name="settings_about_title">About Messenger</string>
     <string name="settings_version">Version %s</string>
     <string name="settings_logging_enabled">Debug logging enabled</string>
     <string name="settings_logging_disabled">Debug logging disabled</string>
@@ -339,11 +339,24 @@
 
     <string name="blocking_title">Blocking</string>
     <string name="blocking_drop_title">Drop messages</string>
-    <string name="blocking_drop_summary">Drop incoming messages from blocked senders instead of hiding them</string>
+    <string name="blocking_drop_summary">Drop incoming messages from blocked numbers and unknown senders instead of hiding them</string>
+    <string name="blocking_drop_filtered_title">Drop filtered messages</string>
+    <string name="blocking_drop_filtered_summary">Drop incoming messages that match a content filter instead of hiding them</string>
+    <string name="blocked_by_content_filter">Content filter</string>
+    <string name="blocked_by_unknown_sender">Not in contacts</string>
+    <string name="blocked_numbers_unknown_title">Block unknown senders</string>
+    <string name="blocked_numbers_unknown_summary">Block messages from numbers that aren\'t in your contacts</string>
+    <string name="blocked_numbers_allow_short_codes_title">Allow short codes</string>
+    <string name="blocked_numbers_allow_short_codes_summary">Allow senders with fewer than %d digits, such as verification codes and alerts</string>
+    <string name="blocked_numbers_short_code_digits_title">Short code length</string>
+    <string name="blocked_numbers_short_code_digits_summary">Fewer than %d digits</string>
+    <string name="blocked_numbers_short_code_digits_hint">Allow senders with fewer than this many digits</string>
+    <string name="blocked_numbers_allow_messaged_title">Allow numbers you\'ve messaged</string>
+    <string name="blocked_numbers_allow_messaged_summary">Allow senders you\'ve sent a message to before</string>
     <string name="blocking_conversations">Blocked conversations</string>
 
     <string name="blocking_manager_title">Blocking Manager</string>
-    <string name="blocking_manager_qksms_summary">Built-in blocking functionality in QUIK</string>
+    <string name="blocking_manager_qksms_summary">Built-in blocking functionality in Messenger</string>
     <string name="blocking_manager_call_blocker_title" translatable="false">Call Blocker - Incoming/Outgoing</string>
     <string name="blocking_manager_call_blocker_summary">Block spam messages, numbers &amp; unknown calls with blacklist &amp; Schedule</string>
     <string name="blocking_manager_call_control_title" translatable="false">Call Control</string>
@@ -426,7 +439,7 @@
     <string name="about_license" translatable="false">GNU General Public License v3.0</string>
     <string name="about_copyright" translatable="false">© 2014–2026</string>
 
-    <string name="changelog_title" translatable="false">New in QUIK</string>
+    <string name="changelog_title" translatable="false">New in Messenger</string>
     <string name="changelog_version" translatable="false">Version %s</string>
     <string name="changelog_added" translatable="false">Added</string>
     <string name="changelog_improved" translatable="false">Improved</string>
