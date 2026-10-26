@@ -408,6 +408,8 @@
     <string name="deduplicate_preview_title">Preview Duplicates as CSV</string>
     <string name="deduplicate_preview_summary">Lists the messages that would be removed, next to the originals that would be kept, and shares the file. Nothing is deleted</string>
     <string name="deduplicate_preview_subject">Duplicate messages report</string>
+    <string name="deduplicate_preview_ready">Report created. Choose an app to share it.</string>
+    <string name="deduplicate_preview_failed">Couldn\'t create or share the duplicate report.</string>
     <string name="deduplicating_messages_failed">Deduplicating messages failed, please try again</string>
 
     <string name="about_title">About</string>

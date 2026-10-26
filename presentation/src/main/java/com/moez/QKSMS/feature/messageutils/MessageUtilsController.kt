@@ -1,5 +1,9 @@
 package dev.octoshrimpy.quik.feature.messageutils
 
+import timber.log.Timber
+import android.net.Uri
+import android.content.Intent
+import android.content.ClipData
 import android.animation.ObjectAnimator
 import android.app.AlertDialog
 import android.content.Context
@@ -107,6 +111,27 @@ class MessageUtilsController : QkController<MessageUtilsControllerBinding, Messa
     override fun handleDeduplicationResult(resIdString: Int) {
         binding.deduplicationProgressText.isVisible = true
         binding.deduplicationProgressText.setText(resIdString)
+    }
+
+    override fun shareDuplicateReport(uri: Uri) {
+        val activity = activity ?: return
+        handleDeduplicationResult(R.string.deduplicate_preview_ready)
+
+        val send = Intent(Intent.ACTION_SEND)
+            .setType("text/csv")
+            .putExtra(Intent.EXTRA_STREAM, uri)
+            .putExtra(Intent.EXTRA_SUBJECT, activity.getString(R.string.deduplicate_preview_subject))
+            .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        // Lets the read permission reach whichever app is picked in the chooser
+        send.clipData = ClipData.newRawUri(null, uri)
+
+        try {
+            activity.startActivity(
+                Intent.createChooser(send, activity.getString(R.string.deduplicate_preview_title)))
+        } catch (e: Exception) {
+            Timber.e(e, "Couldn't open share sheet for duplicate report")
+            handleDeduplicationResult(R.string.deduplicate_preview_failed)
+        }
     }
 
     override fun autoDeleteChanged(): Observable<Int> = autoDeleteSubject
