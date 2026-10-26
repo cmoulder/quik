@@ -105,5 +105,12 @@ interface MessageRepository {
 
     fun deduplicateMessages(): Flowable<DeduplicationResult>
 
+    /**
+     * Finds duplicates the same way [deduplicateMessages] does, but deletes nothing. Writes a CSV
+     * listing each kept original followed by the duplicates that would be removed, and returns
+     * the file, or null if there are no duplicates
+     */
+    fun exportDuplicateMessagesReport(): java.io.File?
+
     fun markAsSendingNow(messageId: Long)
 }

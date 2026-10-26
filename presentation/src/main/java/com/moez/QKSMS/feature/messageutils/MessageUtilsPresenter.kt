@@ -1,5 +1,7 @@
 package dev.octoshrimpy.quik.feature.messageutils
 
+import dev.octoshrimpy.quik.common.Navigator
+import androidx.core.content.FileProvider
 import android.content.Context
 import com.uber.autodispose.android.lifecycle.scope
 import com.uber.autodispose.autoDisposable
@@ -23,7 +25,8 @@ class MessageUtilsPresenter @Inject constructor(
     private val deduplicateMessages: DeduplicateMessages,
     private val prefs: Preferences,
     private val deleteOldMessages: DeleteOldMessages,
-    private val messageRepo: MessageRepository
+    private val messageRepo: MessageRepository,
+    private val navigator: Navigator
 ) : QkPresenter<MessageUtilsView, MessageUtilsState>(MessageUtilsState()) {
     init {
         disposables += messageRepo.deduplicationProgress
@@ -64,6 +67,33 @@ class MessageUtilsPresenter @Inject constructor(
                                 Timber.e("Error while deduplicating messages: ${result.error}")
                             }
                         }
+                    }
+            }
+
+        view.previewDuplicatesClickIntent
+            .observeOn(Schedulers.io())
+            .map { _ ->
+                // Optional-style wrapper: Rx can't emit null
+                runCatching { listOfNotNull(messageRepo.exportDuplicateMessagesReport()) }
+            }
+            .observeOn(AndroidSchedulers.mainThread())
+            .autoDisposable(view.scope())
+            .subscribe { result ->
+                result
+                    .onSuccess { files ->
+                        val file = files.firstOrNull()
+                        if (file == null) {
+                            view.handleDeduplicationResult(R.string.deduplicating_messages_no_messages)
+                        } else {
+                            val uri = FileProvider.getUriForFile(
+                                context, "${context.packageName}.messagesText", file)
+                            navigator.shareFile(uri, "text/csv",
+                                context.getString(R.string.deduplicate_preview_subject))
+                        }
+                    }
+                    .onFailure { error ->
+                        view.handleDeduplicationResult(R.string.deduplicating_messages_failed)
+                        Timber.e(error, "Error while exporting duplicate messages")
                     }
             }
 

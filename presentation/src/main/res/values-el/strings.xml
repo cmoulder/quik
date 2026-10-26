@@ -54,12 +54,12 @@
     <string name="archived_empty_text">Οι αρχειοθετημένες συζητήσεις σας θα εμφανίζονται εδώ</string>
     <string name="main_fab_cd">Έναρξη νέας συνομιλίας</string>
     <string name="main_default_sms_title">Αγαπήστε και πάλι τα SMS</string>
-    <string name="main_default_sms_message">Ορίστε το Messenger ως προκαθορισμένη εφαρμογή SMS</string>
+    <string name="main_default_sms_message">Ορίστε το QMessenger ως προκαθορισμένη εφαρμογή SMS</string>
     <string name="main_default_sms_change">Αλλαγή</string>
     <string name="main_permission_required">Απαιτείται άδεια</string>
-    <string name="main_permission_sms">Το Messenger απαιτεί την άδεια αποστολής και ανάγνωσης μηνυμάτων SMS</string>
-    <string name="main_permission_contacts">Το Messenger απαιτεί την άδεια ανάγνωσης των επαφών σας</string>
-    <string name="main_permission_notifications">Messenger needs permission to display notifications</string>
+    <string name="main_permission_sms">Το QMessenger απαιτεί την άδεια αποστολής και ανάγνωσης μηνυμάτων SMS</string>
+    <string name="main_permission_contacts">Το QMessenger απαιτεί την άδεια ανάγνωσης των επαφών σας</string>
+    <string name="main_permission_notifications">QMessenger needs permission to display notifications</string>
     <string name="main_permission_allow">Να επιτραπεί</string>
     <string name="drawer_inbox">Εισερχόμενα</string>
     <string name="drawer_archived">Αρχείο</string>
@@ -69,7 +69,7 @@
     <string name="drawer_settings">Ρυθμίσεις</string>
     <string name="drawer_help">Βοήθεια &amp; αποστολή σχολίων</string>
     <string name="drawer_invite">Πρόσκληση φίλων</string>
-    <string name="rate_title">Σας αρέσει το Messenger;</string>
+    <string name="rate_title">Σας αρέσει το QMessenger;</string>
     <string name="rate_summary">Δείξτε μας την αγάπη σας και βαθμολογήστε μας στο Google Play!</string>
     <string name="rate_okay">ΕΝΤΑΞΕΙ!</string>
     <string name="rate_dismiss">ΠΑΡΑΛΕΙΨΗ</string>
@@ -248,7 +248,7 @@
     <string name="settings_mms_size_title">Auto-compress MMS image attachments</string>
     <string name="settings_sync_title">Συγχρονισμός μηνυμάτων</string>
     <string name="settings_sync_summary">Επανασυγχρονισμός μηνυμάτων με τη βάση δεδομένων SMS του Android</string>
-    <string name="settings_about_title">Σχετικά με το Messenger</string>
+    <string name="settings_about_title">Σχετικά με το QMessenger</string>
     <string name="settings_version">Έκδοση %s</string>
     <string name="settings_logging_enabled">Η καταγραφή σφαλμάτων ενεργοποιήθηκε</string>
     <string name="settings_logging_disabled">Η καταγραφή σφαλμάτων απενεργοποιήθηκε</string>
@@ -258,7 +258,7 @@
     <string name="blocking_drop_summary">Απόρριψη αντί για απόκρυψη μηνυμάτων από αποστολείς σε φραγή</string>
     <string name="blocking_conversations">Συζητήσεις σε φραγή</string>
     <string name="blocking_manager_title">Διαχειριστής φραγής</string>
-    <string name="blocking_manager_qksms_summary">Ενσωματωμένη λειτουργία φραγής του Messenger</string>
+    <string name="blocking_manager_qksms_summary">Ενσωματωμένη λειτουργία φραγής του QMessenger</string>
     <string name="blocking_manager_call_blocker_summary">Block spam messages, numbers &amp; unknown calls with blacklist &amp; Schedule</string>
     <string name="blocking_manager_call_control_summary">Automatically filter your calls and messages in one convenient place! Community IQ™ allows you to prevent unwanted messages from community known spammers</string>
     <string name="blocking_manager_sia_summary">Automatically filter messages from unsolicited numbers by using the \"Should I Answer\" app</string>

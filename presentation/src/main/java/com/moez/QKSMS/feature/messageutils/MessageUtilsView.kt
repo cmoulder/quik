@@ -7,6 +7,7 @@ import io.reactivex.Single
 interface MessageUtilsView: QkViewContract<MessageUtilsState> {
     val autoDeduplicateClickIntent: Observable<*>
     val deduplicateClickIntent: Observable<Unit>
+    val previewDuplicatesClickIntent: Observable<Unit>
     val autoDeleteClickIntent: Observable<Unit>
 
     fun showDeduplicationConfirmationDialog(): Single<Boolean>

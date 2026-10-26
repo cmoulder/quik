@@ -54,12 +54,12 @@
     <string name="archived_empty_text">Vaši arhivirani razgovori će se pojaviti ovdje</string>
     <string name="main_fab_cd">Započni novi razgovor</string>
     <string name="main_default_sms_title">Ponovno zavolite poruke</string>
-    <string name="main_default_sms_message">Postavite Messenger kao zadanu aplikaciju za SMS-ove</string>
+    <string name="main_default_sms_message">Postavite QMessenger kao zadanu aplikaciju za SMS-ove</string>
     <string name="main_default_sms_change">Promijeni</string>
     <string name="main_permission_required">Potrebne su dozvole</string>
-    <string name="main_permission_sms">Messenger treba dozvolu za slanje i pregledavanje SMS poruka</string>
-    <string name="main_permission_contacts">Messenger treba dozvolu za pregledavanje vaših kontakata</string>
-    <string name="main_permission_notifications">Messenger needs permission to display notifications</string>
+    <string name="main_permission_sms">QMessenger treba dozvolu za slanje i pregledavanje SMS poruka</string>
+    <string name="main_permission_contacts">QMessenger treba dozvolu za pregledavanje vaših kontakata</string>
+    <string name="main_permission_notifications">QMessenger needs permission to display notifications</string>
     <string name="main_permission_allow">Dopusti</string>
     <string name="drawer_inbox">Poruke</string>
     <string name="drawer_archived">Arhivirano</string>
@@ -69,7 +69,7 @@
     <string name="drawer_settings">Postavke</string>
     <string name="drawer_help">Pomoć i povratne informacije</string>
     <string name="drawer_invite">Pozovi prijatelje</string>
-    <string name="rate_title">Uživate u Messenger?</string>
+    <string name="rate_title">Uživate u QMessenger?</string>
     <string name="rate_summary">Podijelite malo ljubavi i ocijenite nas na Google Playu!</string>
     <string name="rate_okay">U REDU!</string>
     <string name="rate_dismiss">ODBACI</string>
@@ -250,7 +250,7 @@
     <string name="settings_mms_size_title">Automatski kompresiraj MMS priloge</string>
     <string name="settings_sync_title">Uskladi poruke</string>
     <string name="settings_sync_summary">Ponovno uskladite svoje poruke s Androidovom nativnom bazom SMS-ova</string>
-    <string name="settings_about_title">O Messenger-u</string>
+    <string name="settings_about_title">O QMessenger-u</string>
     <string name="settings_version">Verzija %s</string>
     <string name="settings_logging_enabled">Omogućen zapisnik za ispravljanje grešaka</string>
     <string name="settings_logging_disabled">Onemogućen zapisnik za ispravljanje grešaka</string>
@@ -260,7 +260,7 @@
     <string name="blocking_drop_summary">Odbacite dolazne poruke od blokiranih pošiljatelja umjesto da ih samo sakrivate</string>
     <string name="blocking_conversations">Blokirani razgovori</string>
     <string name="blocking_manager_title">Upravitelj za blokiranje</string>
-    <string name="blocking_manager_qksms_summary">Ugrađena funkcionalnost blokiranja u Messenger-u</string>
+    <string name="blocking_manager_qksms_summary">Ugrađena funkcionalnost blokiranja u QMessenger-u</string>
     <string name="blocking_manager_call_blocker_summary">Blokirajte neželjene poruke, brojeve i nepoznate pozive pomoću crne liste i zakazivanja</string>
     <string name="blocking_manager_call_control_summary">Automatski filtrirajte svoje pozive i poruke na jednom mjestu! Community IQ™ omogućuje vam filtriranje neželjenih poruka od spammera poznatih zajednici</string>
     <string name="blocking_manager_sia_summary">Automatski filtrirajte poruke od neželjenih brojeva pomoću aplikacije \"Should I Answer\"</string>

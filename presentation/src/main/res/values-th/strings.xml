@@ -54,12 +54,12 @@
     <string name="archived_empty_text">บทสนทนาของคุณที่จัดเก็บไว้จะปรากฏที่นี่</string>
     <string name="main_fab_cd">เริ่มการสนทนาใหม่</string>
     <string name="main_default_sms_title">อยากส่งข้อความอีกครั้ง</string>
-    <string name="main_default_sms_message">ทำให้ Messenger แอป SMS ค่าเริ่มต้นของคุณ</string>
+    <string name="main_default_sms_message">ทำให้ QMessenger แอป SMS ค่าเริ่มต้นของคุณ</string>
     <string name="main_default_sms_change">เปลี่ยน</string>
     <string name="main_permission_required">ต้องการใช้สิทธิ์การเข้าถึง</string>
-    <string name="main_permission_sms">Messenger ต้องการสิทธิ์เพื่อส่ง และดูข้อความ SMS</string>
-    <string name="main_permission_contacts">Messenger ต้องการสิทธิ์เพื่อดูรายชื่อผู้ติดต่อของคุณ</string>
-    <string name="main_permission_notifications">Messenger needs permission to display notifications</string>
+    <string name="main_permission_sms">QMessenger ต้องการสิทธิ์เพื่อส่ง และดูข้อความ SMS</string>
+    <string name="main_permission_contacts">QMessenger ต้องการสิทธิ์เพื่อดูรายชื่อผู้ติดต่อของคุณ</string>
+    <string name="main_permission_notifications">QMessenger needs permission to display notifications</string>
     <string name="main_permission_allow">อนุญาต</string>
     <string name="drawer_inbox">กล่องขาเข้า</string>
     <string name="drawer_archived">จัดเก็บ</string>
@@ -69,7 +69,7 @@
     <string name="drawer_settings">การตั้งค่า</string>
     <string name="drawer_help">ช่วยเหลือ &amp; ข้อคิดเห็น</string>
     <string name="drawer_invite">เชิญเพื่อน</string>
-    <string name="rate_title">ชอบ Messenger ไหม?</string>
+    <string name="rate_title">ชอบ QMessenger ไหม?</string>
     <string name="rate_summary">แชร์และให้คะแนนเราบน Google Play!</string>
     <string name="rate_okay">ตกลง!</string>
     <string name="rate_dismiss">ยกเลิก</string>
@@ -246,7 +246,7 @@
     <string name="settings_mms_size_title">บีบอัดสิ่งที่แนบมาใน MMS อัตโนมัติ</string>
     <string name="settings_sync_title">ซิงค์ข้อความ</string>
     <string name="settings_sync_summary">ซิงค์ข้อความของคุณกับฐานข้อมูลของ Android SMS</string>
-    <string name="settings_about_title">เกี่ยวกับ Messenger</string>
+    <string name="settings_about_title">เกี่ยวกับ QMessenger</string>
     <string name="settings_version">เวอร์ชัน: %s</string>
     <string name="settings_logging_enabled">Debug logging enabled</string>
     <string name="settings_logging_disabled">Debug logging disabled</string>
@@ -256,7 +256,7 @@
     <string name="blocking_drop_summary">Drop incoming messages from blocked senders instead of hiding them</string>
     <string name="blocking_conversations">Blocked conversations</string>
     <string name="blocking_manager_title">Blocking Manager</string>
-    <string name="blocking_manager_qksms_summary">Built-in blocking functionality in Messenger</string>
+    <string name="blocking_manager_qksms_summary">Built-in blocking functionality in QMessenger</string>
     <string name="blocking_manager_call_blocker_summary">Block spam messages, numbers &amp; unknown calls with blacklist &amp; Schedule</string>
     <string name="blocking_manager_call_control_summary">Automatically filter your calls and messages in one convenient place! Community IQ™ allows you to prevent unwanted messages from community known spammers</string>
     <string name="blocking_manager_sia_summary">กรองข้อความจากหมายเลขที่ไม่พึงประสงค์ โดยใช้แอพควรตอบกลับหรือไม่</string>

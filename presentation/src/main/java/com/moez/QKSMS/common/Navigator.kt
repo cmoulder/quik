@@ -150,10 +150,11 @@ class Navigator @Inject constructor(
         startActivityExternal(intent)
     }
 
-    fun shareFile(uri: Uri, mimeType: String) {
+    fun shareFile(uri: Uri, mimeType: String, subject: String? = null) {
         val intent = Intent(Intent.ACTION_SEND)
                 .setType(mimeType.lowercase())
                 .putExtra(Intent.EXTRA_STREAM, uri)
+                .apply { subject?.let { putExtra(Intent.EXTRA_SUBJECT, it) } }
                 .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 .let { Intent.createChooser(it, null) }
 

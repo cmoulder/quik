@@ -54,12 +54,12 @@
     <string name="archived_empty_text">보관된 메시지가 여기 나타납니다</string>
     <string name="main_fab_cd">새로운 대화 시작하기</string>
     <string name="main_default_sms_title">메시지의 매력에 다시 빠지세요</string>
-    <string name="main_default_sms_message">Messenger 앱을 기본 메시지 앱으로 설정하기</string>
+    <string name="main_default_sms_message">QMessenger 앱을 기본 메시지 앱으로 설정하기</string>
     <string name="main_default_sms_change">변경하기</string>
     <string name="main_permission_required">권한을 부여해 주세요</string>
-    <string name="main_permission_sms">Messenger 앱은 메시지를 보내고 읽을 수 있는 권한이 필요합니다</string>
-    <string name="main_permission_contacts">Messenger 앱은 연락처를 읽을 수 있는 권한이 필요합니다</string>
-    <string name="main_permission_notifications">Messenger needs permission to display notifications</string>
+    <string name="main_permission_sms">QMessenger 앱은 메시지를 보내고 읽을 수 있는 권한이 필요합니다</string>
+    <string name="main_permission_contacts">QMessenger 앱은 연락처를 읽을 수 있는 권한이 필요합니다</string>
+    <string name="main_permission_notifications">QMessenger needs permission to display notifications</string>
     <string name="main_permission_allow">허용</string>
     <string name="drawer_inbox">수신함</string>
     <string name="drawer_archived">보관됨</string>
@@ -69,7 +69,7 @@
     <string name="drawer_settings">설정</string>
     <string name="drawer_help">도움말 &amp; 피드백</string>
     <string name="drawer_invite">친구 초대하기</string>
-    <string name="rate_title">Messenger 앱을 잘 사용하고 계신가요?</string>
+    <string name="rate_title">QMessenger 앱을 잘 사용하고 계신가요?</string>
     <string name="rate_summary">Google Play 스토어에 리뷰를 남겨주세요!</string>
     <string name="rate_okay">좋아요!</string>
     <string name="rate_dismiss">안할래요</string>
@@ -246,7 +246,7 @@
     <string name="settings_mms_size_title">자동으로 MMS 첨부 파일 압축하기</string>
     <string name="settings_sync_title">메시지 동기화하기</string>
     <string name="settings_sync_summary">기본 안드로이드 SMS 데이터베이스에 다시 동기화하기</string>
-    <string name="settings_about_title">Messenger에 대해...</string>
+    <string name="settings_about_title">QMessenger에 대해...</string>
     <string name="settings_version">버전 정보 %s</string>
     <string name="settings_logging_enabled">디버그 로깅 설정됨</string>
     <string name="settings_logging_disabled">디버그 로깅 해제됨</string>

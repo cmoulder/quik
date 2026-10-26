@@ -54,12 +54,12 @@
     <string name="archived_empty_text">Suas conversas arquivadas aparecerão aqui</string>
     <string name="main_fab_cd">Iniciar nova conversa</string>
     <string name="main_default_sms_title">Ame enviar SMS de novo</string>
-    <string name="main_default_sms_message">Faça o Messenger seu app padrão de SMS</string>
+    <string name="main_default_sms_message">Faça o QMessenger seu app padrão de SMS</string>
     <string name="main_default_sms_change">Alterar</string>
     <string name="main_permission_required">Permissão necessária</string>
-    <string name="main_permission_sms">O Messenger precisa de permissão para enviar e visualizar mensagens SMS</string>
-    <string name="main_permission_contacts">O Messenger precisa de permissão para visualizar seus contatos</string>
-    <string name="main_permission_notifications">Messenger needs permission to display notifications</string>
+    <string name="main_permission_sms">O QMessenger precisa de permissão para enviar e visualizar mensagens SMS</string>
+    <string name="main_permission_contacts">O QMessenger precisa de permissão para visualizar seus contatos</string>
+    <string name="main_permission_notifications">QMessenger needs permission to display notifications</string>
     <string name="main_permission_allow">Permitir</string>
     <string name="drawer_inbox">Caixa de entrada</string>
     <string name="drawer_archived">Arquivadas</string>
@@ -69,7 +69,7 @@
     <string name="drawer_settings">Configurações</string>
     <string name="drawer_help">Ajuda &amp; comentários</string>
     <string name="drawer_invite">Convidar amigos</string>
-    <string name="rate_title">Está gostando do Messenger?</string>
+    <string name="rate_title">Está gostando do QMessenger?</string>
     <string name="rate_summary">Compartilhe um pouco de amor e avalie-nos no Google Play!</string>
     <string name="rate_okay">OK!</string>
     <string name="rate_dismiss">DESCARTAR</string>
@@ -185,7 +185,7 @@
     </string-array>
     <string name="settings_category_appearance">Aparência</string>
     <string name="settings_category_general">Geral</string>
-    <string name="settings_category_qkreply">Responder via Messenger</string>
+    <string name="settings_category_qkreply">Responder via QMessenger</string>
     <string name="settings_theme_title">Tema</string>
     <string name="settings_night_title">Modo noturno</string>
     <string name="settings_black_title">Modo noturno preto puro</string>
@@ -206,7 +206,7 @@
     <string name="settings_vibration_title">Vibração</string>
     <string name="settings_ringtone_title">Som</string>
     <string name="settings_ringtone_none">Nenhum</string>
-    <string name="settings_qkreply_title">Responder via Messenger</string>
+    <string name="settings_qkreply_title">Responder via QMessenger</string>
     <string name="settings_qkreply_summary">Popup para novas mensagens</string>
     <string name="settings_qkreply_tap_dismiss_title">Toque para descartar</string>
     <string name="settings_qkreply_tap_dismiss_summary">Toque fora do popup para fechá-lo</string>
@@ -248,7 +248,7 @@
     <string name="settings_mms_size_title">Comprimir anexos MMS automaticamente</string>
     <string name="settings_sync_title">Sincronizar mensagens</string>
     <string name="settings_sync_summary">Re-sincronizar suas mensagens com o banco de dados de SMS nativo do Android</string>
-    <string name="settings_about_title">Sobre o Messenger</string>
+    <string name="settings_about_title">Sobre o QMessenger</string>
     <string name="settings_version">Versão %s</string>
     <string name="settings_logging_enabled">Log de depuração ativado</string>
     <string name="settings_logging_disabled">Log de depuração desativado</string>
@@ -258,7 +258,7 @@
     <string name="blocking_drop_summary">Excluir mensagens de remetentes bloqueados em vez de escondê-las</string>
     <string name="blocking_conversations">Conversas bloqueadas</string>
     <string name="blocking_manager_title">Gerenciador de Bloqueio</string>
-    <string name="blocking_manager_qksms_summary">Funcionalidade de bloqueio integrada no Messenger</string>
+    <string name="blocking_manager_qksms_summary">Funcionalidade de bloqueio integrada no QMessenger</string>
     <string name="blocking_manager_call_blocker_summary">Bloquear mensagens de spam, números &amp; chamadas desconhecidas com lista negra &amp; Agendar</string>
     <string name="blocking_manager_call_control_summary">Filtre automaticamente suas chamadas e mensagens num único lugar conveniente! O Community IQ™ permite que você evite mensagens indesejadas de spammers conhecidos pela comunidade</string>
     <string name="blocking_manager_sia_summary">Automaticamente filtrar mensagens não solicitadas usando o aplicativo \"Should I Answer\"</string>

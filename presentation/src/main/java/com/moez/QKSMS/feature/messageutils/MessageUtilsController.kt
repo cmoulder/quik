@@ -38,6 +38,7 @@ class MessageUtilsController : QkController<MessageUtilsControllerBinding, Messa
     private val autoDeleteSubject: Subject<Int> = PublishSubject.create()
     override val autoDeduplicateClickIntent by lazy { binding.autoDeduplicate.clicks() }
     override val deduplicateClickIntent by lazy { binding.deduplicateMessages.clicks() }
+    override val previewDuplicatesClickIntent by lazy { binding.previewDuplicates.clicks() }
     override val autoDeleteClickIntent by lazy { binding.autoDelete.clicks() }
 
     init {

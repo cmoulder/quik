@@ -54,12 +54,12 @@
     <string name="archived_empty_text">Arkiverte samtaler vises her</string>
     <string name="main_fab_cd">Start ny samtale</string>
     <string name="main_default_sms_title">Elsk teksting igjen</string>
-    <string name="main_default_sms_message">Gjør Messenger til standard SMS-app</string>
+    <string name="main_default_sms_message">Gjør QMessenger til standard SMS-app</string>
     <string name="main_default_sms_change">Endre</string>
     <string name="main_permission_required">Tillatelse kreves</string>
-    <string name="main_permission_sms">Messenger trenger tillatelse til å sende og vise tekstmeldinger</string>
-    <string name="main_permission_contacts">Messenger trenger tillatelse til å lese kontaktene dine</string>
-    <string name="main_permission_notifications">Messenger trenger tillatelser til på vise varsler</string>
+    <string name="main_permission_sms">QMessenger trenger tillatelse til å sende og vise tekstmeldinger</string>
+    <string name="main_permission_contacts">QMessenger trenger tillatelse til å lese kontaktene dine</string>
+    <string name="main_permission_notifications">QMessenger trenger tillatelser til på vise varsler</string>
     <string name="main_permission_allow">Tillat</string>
     <string name="drawer_inbox">Innboks</string>
     <string name="drawer_archived">Arkivert</string>
@@ -69,7 +69,7 @@
     <string name="drawer_settings">Innstillinger</string>
     <string name="drawer_help">Hjelp og tilbakemelding</string>
     <string name="drawer_invite">Inviter venner</string>
-    <string name="rate_title">Liker du Messenger?</string>
+    <string name="rate_title">Liker du QMessenger?</string>
     <string name="rate_summary">Del litt kjærlighet og vurder oss på Google Play!</string>
     <string name="rate_okay">Ok!</string>
     <string name="rate_dismiss">Avvis</string>
@@ -248,7 +248,7 @@
     <string name="settings_mms_size_title">Komprimer MMS-vedlegg</string>
     <string name="settings_sync_title">Synkroniser meldinger</string>
     <string name="settings_sync_summary">Resynkroniser meldinger med Androids interne meldingslager</string>
-    <string name="settings_about_title">Om Messenger</string>
+    <string name="settings_about_title">Om QMessenger</string>
     <string name="settings_version">Versjon %s</string>
     <string name="settings_logging_enabled">Feillogg aktivert</string>
     <string name="settings_logging_disabled">Feillogg deaktivert</string>
@@ -258,7 +258,7 @@
     <string name="blocking_drop_summary">Forkast meldinger fra blokkerte sendere istedenfor å skjule dem</string>
     <string name="blocking_conversations">Blokkerte samtaler</string>
     <string name="blocking_manager_title">Blokkeringer</string>
-    <string name="blocking_manager_qksms_summary">Innebygd blokkeringsfunksjon i Messenger</string>
+    <string name="blocking_manager_qksms_summary">Innebygd blokkeringsfunksjon i QMessenger</string>
     <string name="blocking_manager_call_blocker_summary">Blokker spammeldinger, numre og ukjente anrop med svarteliste og planlegging</string>
     <string name="blocking_manager_call_control_summary">Filtrer anrop og meldinger automatisk. Fellesskapets intelligens™ hjelper med å forhindre uønskede henvendelser fra plageånder</string>
     <string name="blocking_manager_sia_summary">Filtrer meldinger fra ukjente numre automatisk med \"Skal jeg svare\"-appen</string>

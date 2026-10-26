@@ -54,12 +54,12 @@
     <string name="archived_empty_text">Tu sa zobrazia vaše archivované konverzácie</string>
     <string name="main_fab_cd">Začať novú konverzáciu</string>
     <string name="main_default_sms_title">Opäť si zamilujte písanie</string>
-    <string name="main_default_sms_message">Nastavte Messenger ako predvolenú SMS aplikáciu</string>
+    <string name="main_default_sms_message">Nastavte QMessenger ako predvolenú SMS aplikáciu</string>
     <string name="main_default_sms_change">Zmeniť</string>
     <string name="main_permission_required">Vyžadované povolenie</string>
-    <string name="main_permission_sms">Messenger potrebuje povolenie posielať a zobrazovať správy SMS</string>
-    <string name="main_permission_contacts">Messenger potrebuje povolenie na zobrazenie kontaktov</string>
-    <string name="main_permission_notifications">Messenger needs permission to display notifications</string>
+    <string name="main_permission_sms">QMessenger potrebuje povolenie posielať a zobrazovať správy SMS</string>
+    <string name="main_permission_contacts">QMessenger potrebuje povolenie na zobrazenie kontaktov</string>
+    <string name="main_permission_notifications">QMessenger needs permission to display notifications</string>
     <string name="main_permission_allow">Povoliť</string>
     <string name="drawer_inbox">Doručené</string>
     <string name="drawer_archived">Archivované</string>
@@ -69,7 +69,7 @@
     <string name="drawer_settings">Nastavenia</string>
     <string name="drawer_help">Nápoveda &amp; spätná väzba</string>
     <string name="drawer_invite">Pozvať priateľov</string>
-    <string name="rate_title">Máte radi Messenger?</string>
+    <string name="rate_title">Máte radi QMessenger?</string>
     <string name="rate_summary">Podeľte sa o trochu lásky a ohodnoťte nás na Google Play!</string>
     <string name="rate_okay">OUKEJ!</string>
     <string name="rate_dismiss">ODMIETNUŤ</string>
@@ -252,7 +252,7 @@
     <string name="settings_mms_size_title">Automaticky komprimovať MMS prílohy</string>
     <string name="settings_sync_title">Synchronizovať správy</string>
     <string name="settings_sync_summary">Opätovne synchronizovať vaše správy s natívnou SMS databázou</string>
-    <string name="settings_about_title">O aplikácii Messenger</string>
+    <string name="settings_about_title">O aplikácii QMessenger</string>
     <string name="settings_version">Verzia %s</string>
     <string name="settings_logging_enabled">Ladiace záznamy povolené</string>
     <string name="settings_logging_disabled">Ladiace záznamy vypnuté</string>
@@ -262,7 +262,7 @@
     <string name="blocking_drop_summary">Zahodiť prichádzajúce správy od blokovaných odosielateľov namiesto ich skrytia.</string>
     <string name="blocking_conversations">Blokované konverzácie</string>
     <string name="blocking_manager_title">Správca blokovaní</string>
-    <string name="blocking_manager_qksms_summary">Vstavané blokovanie v Messenger</string>
+    <string name="blocking_manager_qksms_summary">Vstavané blokovanie v QMessenger</string>
     <string name="blocking_manager_call_blocker_summary">Block spam messages, numbers &amp; unknown calls with blacklist &amp; Schedule</string>
     <string name="blocking_manager_call_control_summary">Automaticky filtrujte svoje hovory a správy na jednom mieste! Community IQ™ vám poskytuje ochranu pred spamom od komunitou označených spammerov.</string>
     <string name="blocking_manager_sia_summary">Automaticky filtrovať správy od nevyžiadaných čísiel pomocou aplikácie \"Should I Answer?\"</string>

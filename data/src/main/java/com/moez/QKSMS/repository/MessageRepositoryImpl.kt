@@ -18,6 +18,10 @@
  */
 package dev.octoshrimpy.quik.repository
 
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import com.moez.QKSMS.manager.QkTransaction
 import android.app.AlarmManager
 import android.app.PendingIntent
@@ -1044,9 +1048,84 @@ open class MessageRepositoryImpl @Inject constructor(
             deduplicationProgress.onNext(MessageRepository.DeduplicationProgress.Idle)
         }
 
-    private fun findDuplicateMessages(): List<Long> {
-        val seenSignatures = HashSet<String>()
-        val duplicateIds = ArrayList<Long>()
+    override fun exportDuplicateMessagesReport(): File? {
+        try {
+            val pairs = findDuplicatePairs()
+            if (pairs.isEmpty()) return null
+
+            deduplicationProgress.onNext(MessageRepository.DeduplicationProgress.Running(0, 0, true))
+
+            // original id -> duplicate ids, in original id order
+            val groups = pairs.groupBy({ it.first }, { it.second }).toSortedMap()
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US)
+            fun formatDate(millis: Long) = if (millis > 0) dateFormat.format(Date(millis)) else ""
+            fun csv(vararg fields: Any?) = fields.joinToString(",") { field ->
+                "\"" + (field?.toString() ?: "").replace("\"", "\"\"") + "\""
+            }
+
+            val file = File(context.cacheDir, "duplicate-messages-${System.currentTimeMillis()}.csv")
+
+            Realm.getDefaultInstance().use { realm ->
+                val recipientsByThread = HashMap<Long, String>()
+                fun recipientsOf(threadId: Long) = recipientsByThread.getOrPut(threadId) {
+                    realm.where(Conversation::class.java)
+                        .equalTo("id", threadId)
+                        .findFirst()
+                        ?.recipients
+                        ?.joinToString("; ") { it.address }
+                        .orEmpty()
+                }
+
+                file.bufferedWriter().use { writer ->
+                    // UTF-8 byte order mark so Excel shows emoji and accents correctly
+                    writer.write("\uFEFF")
+                    writer.write(csv("Group", "Action", "Message ID", "Thread ID", "Direction",
+                        "Sender", "Recipient", "Date", "Date sent", "Type", "Content"))
+                    writer.newLine()
+
+                    groups.entries.forEachIndexed { index, (originalId, duplicateIds) ->
+                        (listOf(originalId) + duplicateIds).forEach { id ->
+                            val message = realm.where(Message::class.java)
+                                .equalTo("id", id)
+                                .findFirst() ?: return@forEach
+                            val isOriginal = id == originalId
+                            val isMe = message.isMe()
+                            val others = recipientsOf(message.threadId).ifEmpty { message.address }
+
+                            writer.write(csv(
+                                index + 1,
+                                if (isOriginal) "Keep (original)" else "Remove (duplicate)",
+                                message.id,
+                                message.threadId,
+                                if (isMe) "Sent" else "Received",
+                                if (isMe) "Me" else message.address,
+                                if (isMe) others else "Me",
+                                formatDate(message.date),
+                                formatDate(message.dateSent),
+                                if (message.isSms()) "SMS" else "MMS",
+                                message.getText(false)
+                            ))
+                            writer.newLine()
+                        }
+                    }
+                }
+            }
+
+            return file
+        } finally {
+            deduplicationProgress.onNext(MessageRepository.DeduplicationProgress.Idle)
+        }
+    }
+
+    private fun findDuplicateMessages(): List<Long> = findDuplicatePairs().map { it.second }
+
+    /**
+     * Returns (original id, duplicate id) pairs. The original is the lowest-id message with a
+     * given signature; every later message with the same signature is a duplicate
+     */
+    private fun findDuplicatePairs(): List<Pair<Long, Long>> {
+        val seenSignatures = HashMap<String, Long>()
+        val duplicateIds = ArrayList<Pair<Long, Long>>()
 
         Realm.getDefaultInstance().use { realm ->
             val allMessages = realm.where(Message::class.java)
@@ -1065,8 +1144,11 @@ open class MessageRepositoryImpl @Inject constructor(
                         )
                     }
                     val signature = messageHash(message)
-                    if (!seenSignatures.add(signature)) {
-                        duplicateIds.add(message.id)
+                    val originalId = seenSignatures[signature]
+                    if (originalId == null) {
+                        seenSignatures[signature] = message.id
+                    } else {
+                        duplicateIds.add(originalId to message.id)
                     }
                 }
             }

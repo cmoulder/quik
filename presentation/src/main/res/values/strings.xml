@@ -18,7 +18,7 @@
   -->
 <resources>
 
-    <string name="app_name" translatable="false">Messenger</string>
+    <string name="app_name" translatable="false">QMessenger</string>
 
     <string name="shortcut_compose_long_label">New conversation</string>
     <string name="shortcut_compose_short_label">Compose</string>
@@ -70,12 +70,12 @@
     <string name="archived_empty_text">Your archived conversations will appear here</string>
     <string name="main_fab_cd">Start new conversation</string>
     <string name="main_default_sms_title">Love texting again</string>
-    <string name="main_default_sms_message">Make Messenger your default SMS app</string>
+    <string name="main_default_sms_message">Make QMessenger your default SMS app</string>
     <string name="main_default_sms_change">Change</string>
     <string name="main_permission_required">Permission required</string>
-    <string name="main_permission_sms">Messenger needs permission to send and view SMS messages</string>
-    <string name="main_permission_contacts">Messenger needs permission to view your contacts</string>
-    <string name="main_permission_notifications">Messenger needs permission to display notifications</string>
+    <string name="main_permission_sms">QMessenger needs permission to send and view SMS messages</string>
+    <string name="main_permission_contacts">QMessenger needs permission to view your contacts</string>
+    <string name="main_permission_notifications">QMessenger needs permission to display notifications</string>
     <string name="main_permission_allow">Allow</string>
 
     <string name="scheduled_menu_send_now">Send now</string>
@@ -91,7 +91,7 @@
     <string name="drawer_help">Help &amp; feedback</string>
     <string name="drawer_invite">Invite friends</string>
 
-    <string name="rate_title">Enjoying Messenger?</string>
+    <string name="rate_title">Enjoying QMessenger?</string>
     <string name="rate_summary">Share some love and leave us a Star on GitHub!</string>
     <string name="rate_okay">OKAY!</string>
     <string name="rate_dismiss">DISMISS</string>
@@ -330,7 +330,7 @@
     <string name="settings_diable_screenshots_summary">Prevent your OS and other apps from taking screenshots of the app.</string>
     <string name="settings_sync_title">Sync messages</string>
     <string name="settings_sync_summary">Re-sync your messages with the native Android SMS database</string>
-    <string name="settings_about_title">About Messenger</string>
+    <string name="settings_about_title">About QMessenger</string>
     <string name="settings_version">Version %s</string>
     <string name="settings_logging_enabled">Debug logging enabled</string>
     <string name="settings_logging_disabled">Debug logging disabled</string>
@@ -338,7 +338,7 @@
     <string name="settings_delay_duration_hint">Enter duration (seconds)</string>
 
     <string name="blocking_title">Blocking</string>
-    <string name="blocking_drop_title">Drop messages</string>
+    <string name="blocking_drop_title">Drop messages from blocked senders</string>
     <string name="blocking_drop_summary">Drop incoming messages from blocked numbers and unknown senders instead of hiding them</string>
     <string name="blocking_drop_filtered_title">Drop filtered messages</string>
     <string name="blocking_drop_filtered_summary">Drop incoming messages that match a content filter instead of hiding them</string>
@@ -356,7 +356,7 @@
     <string name="blocking_conversations">Blocked conversations</string>
 
     <string name="blocking_manager_title">Blocking Manager</string>
-    <string name="blocking_manager_qksms_summary">Built-in blocking functionality in Messenger</string>
+    <string name="blocking_manager_qksms_summary">Built-in blocking functionality in QMessenger</string>
     <string name="blocking_manager_call_blocker_title" translatable="false">Call Blocker - Incoming/Outgoing</string>
     <string name="blocking_manager_call_blocker_summary">Block spam messages, numbers &amp; unknown calls with blacklist &amp; Schedule</string>
     <string name="blocking_manager_call_control_title" translatable="false">Call Control</string>
@@ -405,6 +405,9 @@
     <string name="auto_deduplicate_messages_summary">Deduplication will be performed during sync. Please note, this will automatically delete messages, and while the chance of there being a false duplicate is very low, it is still possible.\nPlease exercise caution.</string>
     <string name="deduplicating_messages_finished">Finished deduplicating messages!</string>
     <string name="deduplicating_messages_no_messages">No duplicate messages found.</string>
+    <string name="deduplicate_preview_title">Preview Duplicates as CSV</string>
+    <string name="deduplicate_preview_summary">Lists the messages that would be removed, next to the originals that would be kept, and shares the file. Nothing is deleted</string>
+    <string name="deduplicate_preview_subject">Duplicate messages report</string>
     <string name="deduplicating_messages_failed">Deduplicating messages failed, please try again</string>
 
     <string name="about_title">About</string>
@@ -439,7 +442,7 @@
     <string name="about_license" translatable="false">GNU General Public License v3.0</string>
     <string name="about_copyright" translatable="false">© 2014–2026</string>
 
-    <string name="changelog_title" translatable="false">New in Messenger</string>
+    <string name="changelog_title" translatable="false">New in QMessenger</string>
     <string name="changelog_version" translatable="false">Version %s</string>
     <string name="changelog_added" translatable="false">Added</string>
     <string name="changelog_improved" translatable="false">Improved</string>

@@ -54,12 +54,12 @@
     <string name="archived_empty_text">Ваші архівовані бесіди з\'являтимуться тут</string>
     <string name="main_fab_cd">Почати нову бесіду</string>
     <string name="main_default_sms_title">Ви знову полюбите писати</string>
-    <string name="main_default_sms_message">Зробити Messenger початковою програмою для SMS</string>
+    <string name="main_default_sms_message">Зробити QMessenger початковою програмою для SMS</string>
     <string name="main_default_sms_change">Встановити</string>
     <string name="main_permission_required">Вимагається дозвіл</string>
-    <string name="main_permission_sms">Для надсилання та перегляду SMS-повідомлень Messenger потрібен дозвіл</string>
-    <string name="main_permission_contacts">Для перегляду ваших контактів Messenger потрібен дозвіл</string>
-    <string name="main_permission_notifications">Для відображення сповіщень Messenger потрібний дозвіл</string>
+    <string name="main_permission_sms">Для надсилання та перегляду SMS-повідомлень QMessenger потрібен дозвіл</string>
+    <string name="main_permission_contacts">Для перегляду ваших контактів QMessenger потрібен дозвіл</string>
+    <string name="main_permission_notifications">Для відображення сповіщень QMessenger потрібний дозвіл</string>
     <string name="main_permission_allow">Дозволити</string>
     <string name="drawer_inbox">Вхідні</string>
     <string name="drawer_archived">Архівні</string>
@@ -69,7 +69,7 @@
     <string name="drawer_settings">Налаштування</string>
     <string name="drawer_help">Допомога та зворотній зв\'язок</string>
     <string name="drawer_invite">Запросити друзів</string>
-    <string name="rate_title">Подобається Messenger?</string>
+    <string name="rate_title">Подобається QMessenger?</string>
     <string name="rate_summary">Поділись любов\'ю та оціни нас на Google Play!</string>
     <string name="rate_okay">Гаразд!</string>
     <string name="rate_dismiss">ВІДХИЛИТИ</string>
@@ -252,7 +252,7 @@
     <string name="settings_mms_size_title">Автоматичне стиснення MMS-вкладень</string>
     <string name="settings_sync_title">Синхронізація повідомлень</string>
     <string name="settings_sync_summary">Повторна синхронізація ваших повідомлень з власною базою даних SMS Android</string>
-    <string name="settings_about_title">Про Messenger</string>
+    <string name="settings_about_title">Про QMessenger</string>
     <string name="settings_version">Версія %s</string>
     <string name="settings_logging_enabled">Ведення журналу зневаження увімкнуте</string>
     <string name="settings_logging_disabled">Ведення журналу зневаження вимкнуте</string>
@@ -262,7 +262,7 @@
     <string name="blocking_drop_summary">Видаляти вхідні повідомлення від заблокованих відправників, а не приховувати їх</string>
     <string name="blocking_conversations">Заблоковані бесіди</string>
     <string name="blocking_manager_title">Керування блокуванням</string>
-    <string name="blocking_manager_qksms_summary">Вбудована функція блокування Messenger</string>
+    <string name="blocking_manager_qksms_summary">Вбудована функція блокування QMessenger</string>
     <string name="blocking_manager_call_blocker_summary">Блокуйте спам-повідомлення, невідомі номери та дзвінки за допомогою чорного списку та за розкладом</string>
     <string name="blocking_manager_call_control_summary">Автоматична фільтрація дзвінків та повідомлень в одному зручному місці! Community IQ™ дозволить запобігти отримуванню небажаних повідомлень від відомих спільноті спамерів</string>
     <string name="blocking_manager_sia_summary">Автоматично фільтрувати повідомлення від небажаних номерів за допомогою застосунку «Should I Answer»</string>
