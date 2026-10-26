@@ -48,7 +48,7 @@
             android:id="@+id/previewDuplicates"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:icon="@drawable/ic_share_black_24dp"
+            android:paddingStart="24dp"
             app:summary="@string/deduplicate_preview_summary"
             app:title="@string/deduplicate_preview_title" />
 

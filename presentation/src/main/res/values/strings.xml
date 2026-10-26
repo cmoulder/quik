@@ -406,7 +406,7 @@
     <string name="deduplicating_messages_finished">Finished deduplicating messages!</string>
     <string name="deduplicating_messages_no_messages">No duplicate messages found.</string>
     <string name="deduplicate_preview_title">Preview Duplicates as CSV</string>
-    <string name="deduplicate_preview_summary">Lists the messages that would be removed, next to the originals that would be kept, and shares the file. Nothing is deleted</string>
+    <string name="deduplicate_preview_summary">Exports a list of messages to be removed. Nothing is deleted.</string>
     <string name="deduplicate_preview_subject">Duplicate messages report</string>
     <string name="deduplicate_preview_ready">Report created. Choose an app to share it.</string>
     <string name="deduplicate_preview_failed">Couldn\'t create or share the duplicate report.</string>
