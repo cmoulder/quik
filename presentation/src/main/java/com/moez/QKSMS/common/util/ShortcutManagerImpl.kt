@@ -42,6 +42,15 @@ class ShortcutManagerImpl @Inject constructor(
     private val colors: Colors
 ) : dev.octoshrimpy.quik.manager.ShortcutManager {
 
+    private companion object {
+        // Must match the category in res/xml/shortcuts.xml <share-target>
+        const val SHARE_TARGET_CATEGORY = "dev.octoshrimpy.quik.category.SHARE_TARGET"
+
+        // Conversations offered in the Android share sheet: the top of the same ranking used
+        // for launcher shortcuts (pinned first, then most messages in the last 7 days)
+        const val SHARE_TARGET_COUNT = 3
+    }
+
     override fun updateBadge() {
         val count = messageRepo.getUnreadCount().toInt()
         ShortcutBadger.applyCount(context, count)
@@ -62,7 +71,9 @@ class ShortcutManagerImpl @Inject constructor(
                 shortcutManager.maxShortcutCountPerActivity -
                         shortcutManager.manifestShortcuts.size
             )
-            .map { conversation -> createShortcutForConversation(conversation) }
+            .mapIndexed { index, conversation ->
+                createShortcutForConversation(conversation, shareTarget = index < SHARE_TARGET_COUNT)
+            }
 
         ShortcutManagerCompat.setDynamicShortcuts(context, shortcuts)
     }
@@ -74,13 +85,23 @@ class ShortcutManagerImpl @Inject constructor(
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N_MR1) return null
 
         val conv = conversationRepo.getConversation(threadId) ?: return null
-        val sc = createShortcutForConversation(conv)
+        // Keep share-sheet status as last set by updateShortcuts, so the share sheet always
+        // shows the top-ranked conversations rather than whichever was messaged last
+        val shortcutManager = context.getSystemService(Context.SHORTCUT_SERVICE) as ShortcutManager
+        val isShareTarget = shortcutManager.dynamicShortcuts
+            .find { it.id == threadId.toString() }
+            ?.categories
+            ?.contains(SHARE_TARGET_CATEGORY) == true
+        val sc = createShortcutForConversation(conv, isShareTarget)
         pushShortcut(sc, conv)
 
         return sc
     }
 
-    private fun createShortcutForConversation(conversation: Conversation): ShortcutInfoCompat {
+    private fun createShortcutForConversation(
+        conversation: Conversation,
+        shareTarget: Boolean
+    ): ShortcutInfoCompat {
         Timber.v("creating shortcut for conversation ${conversation.id}")
 
         val icon = when {
@@ -117,6 +138,7 @@ class ShortcutManagerImpl @Inject constructor(
             .setIntent(intent)
             .setPersons(persons)
             .setLongLived(true)
+            .apply { if (shareTarget) setCategories(setOf(SHARE_TARGET_CATEGORY)) }
             .build()
 
         return sc

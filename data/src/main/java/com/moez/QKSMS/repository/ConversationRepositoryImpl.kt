@@ -181,7 +181,8 @@ class ConversationRepositoryImpl @Inject constructor(
             for (message in candidates) {
                 if (cancelled()) return@use emptyList()
                 val threadId = message.threadId
-                if (threadId in latestMatch || threadId !in conversationsById) continue
+                // Name matches show their latest message instead, so don't scan their messages
+                if (threadId in latestMatch || threadId in nameMatches || threadId !in conversationsById) continue
                 if (wordMatcher.containsMatchIn(message.getText(false))) {
                     latestMatch[threadId] = message
                 }
@@ -195,7 +196,11 @@ class ConversationRepositoryImpl @Inject constructor(
                     SearchResult(
                         searchQuery,
                         realm.copyFromRealm(conversation),
-                        latestMatch[threadId]?.let { message -> realm.copyFromRealm(message) }
+                        // Name matches show and sort by the conversation's latest message, so
+                        // people you've texted recently come first
+                        latestMatch[threadId]
+                            ?.takeIf { threadId !in nameMatches }
+                            ?.let { message -> realm.copyFromRealm(message) }
                     )
                 }
                 // Newest first, by the message shown in the row

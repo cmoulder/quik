@@ -36,4 +36,11 @@
 
     </shortcut>
 
+    <!-- Direct Share: conversation shortcuts tagged with this category appear as targets in the
+         Android share sheet -->
+    <share-target android:targetClass="dev.octoshrimpy.quik.feature.compose.ComposeActivity">
+        <data android:mimeType="*/*" />
+        <category android:name="dev.octoshrimpy.quik.category.SHARE_TARGET" />
+    </share-target>
+
 </shortcuts>

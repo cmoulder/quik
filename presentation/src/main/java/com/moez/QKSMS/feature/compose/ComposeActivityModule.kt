@@ -18,6 +18,7 @@
  */
 package dev.octoshrimpy.quik.feature.compose
 
+import androidx.core.content.pm.ShortcutManagerCompat
 import android.content.Intent
 import android.net.Uri
 import androidx.lifecycle.ViewModel
@@ -37,7 +38,12 @@ class ComposeActivityModule {
 
     @Provides
     @Named("threadId")
-    fun provideThreadId(activity: ComposeActivity): Long = activity.intent.extras?.getLong("threadId") ?: 0L
+    fun provideThreadId(activity: ComposeActivity): Long =
+        activity.intent.extras?.getLong("threadId")?.takeIf { it != 0L }
+            // Direct Share from the Android share sheet passes the chosen shortcut, whose id is
+            // the conversation's thread id
+            ?: activity.intent.getStringExtra(ShortcutManagerCompat.EXTRA_SHORTCUT_ID)?.toLongOrNull()
+            ?: 0L
 
     @Provides
     @Named("addresses")

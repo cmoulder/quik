@@ -77,6 +77,10 @@ class BlockedMessagesAdapter @Inject constructor(
         binding.title.collapseEnabled = conversation.recipients.size > 1
         binding.title.text = conversation.getTitle()
         binding.date.text = dateFormatter.getConversationTimestamp(conversation.date)
+        binding.snippet.text = when (conversation.me) {
+            true -> context.getString(R.string.main_sender_you, conversation.snippet)
+            false -> conversation.snippet
+        }
 
         binding.blocker.text = when (conversation.blockingClient) {
             Preferences.BLOCKING_MANAGER_CC -> context.getString(R.string.blocking_manager_call_control_title)

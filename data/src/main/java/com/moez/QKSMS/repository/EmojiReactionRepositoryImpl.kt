@@ -18,6 +18,7 @@
  */
 package dev.octoshrimpy.quik.repository
 
+import java.util.concurrent.TimeUnit
 import android.content.Context
 import com.squareup.moshi.Moshi
 import dev.octoshrimpy.quik.manager.KeyManager
@@ -34,7 +35,11 @@ class EmojiReactionRepositoryImpl @Inject constructor(
     private val keyManager: KeyManager,
     private val moshi: Moshi,
 ) : EmojiReactionRepository {
+
     companion object {
+        // How far back a full sync looks for emoji reactions
+        private const val REPARSE_DAYS = 30L
+
         /**
          * How many recent messages a text-matched reaction scans before giving up.
          * It is highly unlikely that someone would react to a text over 500 messages away
@@ -330,6 +335,9 @@ class EmojiReactionRepositoryImpl @Inject constructor(
                     .isNotEmpty("parts.text")
                 .endGroup()
             .endGroup()
+            // Only recent messages: parsing reactions across a whole history is slow on a fresh
+            // install and adds nothing to old conversations. Older reactions stay as plain text
+            .greaterThan("date", System.currentTimeMillis() - TimeUnit.DAYS.toMillis(REPARSE_DAYS))
             // parse oldest to newest to handle reactions & removals properly
             .sort("date", Sort.ASCENDING)
             .findAll()
