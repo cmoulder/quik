@@ -269,6 +269,7 @@ class MainActivity : QkThemedActivity(), MainView {
             state.page is Inbox || state.page is Archived
         }
         searchAdapter.emptyView = binding.empty.takeIf { state.page is Searching }
+        binding.searchProgress.setVisible(state.page is Searching && state.page.loading)
 
         when (state.page) {
             is Inbox -> {
@@ -287,6 +288,8 @@ class MainActivity : QkThemedActivity(), MainView {
                 searchAdapter.data = state.page.data ?: listOf()
                 itemTouchHelper.attachToRecyclerView(null)
                 binding.empty.setText(R.string.inbox_search_empty_text)
+                // Only say "no results" once a search has actually finished
+                if (state.page.loading || state.page.data == null) binding.empty.setVisible(false)
             }
 
             is Archived -> {

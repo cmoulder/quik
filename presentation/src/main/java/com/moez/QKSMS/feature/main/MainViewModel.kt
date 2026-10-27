@@ -50,6 +50,7 @@ import dev.octoshrimpy.quik.repository.MessageRepository
 import dev.octoshrimpy.quik.repository.ScheduledMessageRepository
 import dev.octoshrimpy.quik.repository.SyncRepository
 import dev.octoshrimpy.quik.util.Preferences
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.plusAssign
 import io.reactivex.schedulers.Schedulers
@@ -269,18 +270,26 @@ class MainViewModel @Inject constructor(
                     }
                     query
                 }
-                .filter { query -> query.length >= 2 }
                 .distinctUntilChanged()
-                .doOnNext {
-                    newState {
-                        val page = (page as? Searching) ?: Searching()
-                        copy(page = page.copy(loading = true))
+                // switchMap: a new query cancels the search still running for the previous one,
+                // so stale results can never arrive after newer ones. Clearing the query cancels
+                // it too, so results can't pop back up over the inbox
+                .switchMap { query ->
+                    when {
+                        query.isEmpty() -> Observable.empty<Searching>()
+
+                        query.length < 2 -> Observable.just<Searching>(Searching(loading = false, data = null))
+
+                        else -> Observable
+                            .fromCallable { conversationRepo.searchConversations(query) }
+                            .subscribeOn(Schedulers.io())
+                            .map { data -> Searching(loading = false, data = data) }
+                            .startWith(Searching(loading = true, data = null))
                     }
                 }
-                .observeOn(Schedulers.io())
-                .map(conversationRepo::searchConversations)
+                .observeOn(AndroidSchedulers.mainThread())
                 .autoDisposable(view.scope())
-                .subscribe { data -> newState { copy(page = Searching(loading = false, data = data)) } }
+                .subscribe { page -> newState { copy(page = page) } }
 
         view.activityResumedIntent
                 .filter { resumed -> !resumed }

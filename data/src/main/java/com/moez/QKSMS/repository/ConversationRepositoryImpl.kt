@@ -32,6 +32,7 @@ import dev.octoshrimpy.quik.model.Conversation
 import dev.octoshrimpy.quik.model.Message
 import dev.octoshrimpy.quik.model.Recipient
 import dev.octoshrimpy.quik.model.SearchResult
+import dev.octoshrimpy.quik.model.SearchMatcher
 import dev.octoshrimpy.quik.util.PhoneNumberUtils
 import dev.octoshrimpy.quik.util.tryOrNull
 import io.reactivex.Completable
@@ -140,40 +141,66 @@ class ConversationRepositoryImpl @Inject constructor(
         }.subscribeOn(Schedulers.io()) // Ensure the operation is performed on a background thread
 
     override fun searchConversations(query: CharSequence): List<SearchResult> {
-        val realm = Realm.getDefaultInstance()
+        val searchQuery = query.toString().trim()
+        if (searchQuery.isEmpty()) return emptyList()
 
-        val searchQuery = query.toString()
-        val conversations = realm.copyFromRealm(realm
-            .where(Conversation::class.java)
-            .notEqualTo("id", 0L)
-            .isNotNull("lastMessage")
-            .equalTo("blocked", false)
-            .isNotEmpty("recipients")
-            .sort("pinned", Sort.DESCENDING, "lastMessage.date", Sort.DESCENDING)
-            .findAll())
+        val wordMatcher = SearchMatcher.wholeWord(searchQuery)
+        val cancelled = { Thread.currentThread().isInterrupted }
 
-        val messagesByConversation = realm.copyFromRealm(realm
-            .where(Message::class.java)
-            .beginGroup()
-            .contains("body", searchQuery, Case.INSENSITIVE)
-            .or()
-            .contains("parts.text", searchQuery, Case.INSENSITIVE)
-            .endGroup()
-            .findAll())
-            .groupBy { message -> message.threadId }
-            .filter { (threadId, _) -> conversations.firstOrNull { it.id == threadId } != null }
-            .map { (threadId, messages) -> Pair(conversations.first { it.id == threadId }, messages.size) }
-            .map { (conversation, messages) -> SearchResult(searchQuery, conversation, messages) }
-            .sortedByDescending { result -> result.messages }
-            .toList()
+        return Realm.getDefaultInstance().use { realm ->
+            // Managed results are read lazily; nothing is copied out of the database until we
+            // know which conversations are in the results
+            val conversations = realm
+                .where(Conversation::class.java)
+                .notEqualTo("id", 0L)
+                .isNotNull("lastMessage")
+                .equalTo("blocked", false)
+                .isNotEmpty("recipients")
+                .findAll()
+            val conversationsById = conversations.associateBy { conversation -> conversation.id }
 
-        realm.close()
+            // Name or participant matches (partial matches, so "Mic" finds "Michael")
+            val nameMatches = conversations
+                .filter { conversation -> conversationFilter.filter(conversation, searchQuery) }
+                .mapTo(HashSet()) { conversation -> conversation.id }
 
-        return conversations
-            .filter { conversation -> conversationFilter.filter(conversation, searchQuery) }
-            .map {
-                    conversation -> SearchResult(searchQuery, conversation, 0)
-            } + messagesByConversation
+            // The database can only do substring matching, so use it to narrow down candidates,
+            // newest first, then apply the whole-word rule. The first whole-word match found for
+            // a conversation is its most recent one, so later messages in it are skipped
+            val candidates = realm
+                .where(Message::class.java)
+                .beginGroup()
+                .contains("body", searchQuery, Case.INSENSITIVE)
+                .or()
+                .contains("parts.text", searchQuery, Case.INSENSITIVE)
+                .endGroup()
+                .sort("date", Sort.DESCENDING)
+                .findAll()
+
+            val latestMatch = LinkedHashMap<Long, Message>()
+            for (message in candidates) {
+                if (cancelled()) return@use emptyList()
+                val threadId = message.threadId
+                if (threadId in latestMatch || threadId !in conversationsById) continue
+                if (wordMatcher.containsMatchIn(message.getText(false))) {
+                    latestMatch[threadId] = message
+                }
+            }
+
+            if (cancelled()) return@use emptyList()
+
+            (nameMatches + latestMatch.keys)
+                .mapNotNull { threadId ->
+                    val conversation = conversationsById[threadId] ?: return@mapNotNull null
+                    SearchResult(
+                        searchQuery,
+                        realm.copyFromRealm(conversation),
+                        latestMatch[threadId]?.let { message -> realm.copyFromRealm(message) }
+                    )
+                }
+                // Newest first, by the message shown in the row
+                .sortedByDescending { result -> result.message?.date ?: result.conversation.date }
+        }
     }
 
     override fun getBlockedConversations(): RealmResults<Conversation> =

@@ -18,4 +18,23 @@
  */
 package dev.octoshrimpy.quik.model
 
-data class SearchResult(val query: String, val conversation: Conversation, val messages: Int)
+/**
+ * One row in the search results. [message] is the most recent message in the conversation that
+ * matches the query, or null if only the conversation's name or a participant matched
+ */
+data class SearchResult(val query: String, val conversation: Conversation, val message: Message?)
+
+object SearchMatcher {
+
+    /**
+     * Whole-word, case-insensitive match for [query], also accepting plurals ending in s or es
+     * and possessives (car, cars, car's, cars', box, boxes). "car" does not match "card" or "scar".
+     * Word boundaries are letters and digits, so punctuation around the word doesn't matter
+     */
+    fun wholeWord(query: String): Regex =
+        Regex(
+            "(?<![\\p{L}\\p{N}])" + Regex.escape(query) +
+                "(?:e?s)?(?:['\u2019]s?)?(?![\\p{L}\\p{N}])",
+            RegexOption.IGNORE_CASE
+        )
+}

@@ -32,6 +32,7 @@ import dev.octoshrimpy.quik.common.util.Colors
 import dev.octoshrimpy.quik.common.util.DateFormatter
 import dev.octoshrimpy.quik.common.util.extensions.setVisible
 import dev.octoshrimpy.quik.extensions.removeAccents
+import dev.octoshrimpy.quik.model.SearchMatcher
 import dev.octoshrimpy.quik.model.SearchResult
 import dev.octoshrimpy.quik.databinding.SearchListItemBinding
 import javax.inject.Inject
@@ -43,6 +44,12 @@ class SearchAdapter @Inject constructor(
     private val navigator: Navigator
 ) : QkAdapter<SearchResult, QkBindingViewHolder<SearchListItemBinding>>() {
 
+    private companion object {
+        // Characters of context kept before the match when a long message is trimmed, so the
+        // matched word is visible in the two-line snippet
+        const val SNIPPET_LEAD = 24
+    }
+
     private val highlightColor: Int by lazy { colors.theme().highlight }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QkBindingViewHolder<SearchListItemBinding> {
@@ -50,53 +57,77 @@ class SearchAdapter @Inject constructor(
         return QkBindingViewHolder(binding).apply {
             itemView.setOnClickListener {
                 val result = getItem(adapterPosition)
-                navigator.showConversation(result.conversation.id, result.query.takeIf { result.messages > 0 })
+                navigator.showConversation(result.conversation.id, result.query.takeIf { result.message != null })
             }
         }
     }
 
     override fun onBindViewHolder(holder: QkBindingViewHolder<SearchListItemBinding>, position: Int) {
-        val previous = data.getOrNull(position - 1)
         val result = getItem(position)
-
-        holder.binding.resultsHeader.setVisible(result.messages > 0 && previous?.messages == 0)
-
+        val binding = holder.binding
         val query = result.query
+
+        // Conversation name: partial, case-insensitive highlight, same rule used to match names
         val title = SpannableString(result.conversation.getTitle())
-        var index = title.removeAccents().indexOf(query, ignoreCase = true)
-
-        while (index >= 0) {
+        val plainTitle = title.removeAccents()
+        var index = plainTitle.indexOf(query, ignoreCase = true)
+        // Removing accents can change the length of a few unusual characters, so check bounds
+        while (index >= 0 && index + query.length <= title.length) {
             title.setSpan(BackgroundColorSpan(highlightColor), index, index + query.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-            index = title.indexOf(query, index + query.length, true)
+            index = plainTitle.indexOf(query, index + query.length, true)
         }
-        holder.binding.title.text = title
+        binding.title.text = title
+        binding.avatars.recipients = result.conversation.recipients
+        binding.resultsHeader.setVisible(false)
 
-        holder.binding.avatars.recipients = result.conversation.recipients
-
-        when (result.messages == 0) {
-            true -> {
-                holder.binding.date.setVisible(true)
-                holder.binding.date.text = dateFormatter.getConversationTimestamp(result.conversation.date)
-                holder.binding.snippet.text = when (result.conversation.me) {
-                    true -> context.getString(R.string.main_sender_you, result.conversation.snippet)
-                    false -> result.conversation.snippet
-                }
+        val message = result.message
+        if (message == null) {
+            // Name match only: show the latest message, like the inbox
+            binding.date.text = dateFormatter.getConversationTimestamp(result.conversation.date)
+            binding.snippet.text = when (result.conversation.me) {
+                true -> context.getString(R.string.main_sender_you, result.conversation.snippet)
+                false -> result.conversation.snippet
             }
+        } else {
+            // Message match: show the most recent matching message with the word highlighted
+            binding.date.text = dateFormatter.getConversationTimestamp(message.date)
+            binding.snippet.text = highlightedSnippet(message.getText(false), query, message.isMe())
+        }
+        binding.date.setVisible(true)
+    }
 
-            false -> {
-                holder.binding.date.setVisible(false)
-                holder.binding.snippet.text = context.getString(R.string.main_message_results, result.messages)
+    private fun highlightedSnippet(text: String, query: String, fromMe: Boolean): CharSequence {
+        val flat = text.replace('\n', ' ')
+        val matches = SearchMatcher.wholeWord(query).findAll(flat).toList()
+
+        // Trim the start of long messages so the first match isn't cut off
+        val firstStart = matches.firstOrNull()?.range?.first ?: 0
+        val cut = if (firstStart > SNIPPET_LEAD) {
+            // Start at a word boundary
+            flat.lastIndexOf(' ', firstStart - SNIPPET_LEAD).let { if (it < 0) firstStart - SNIPPET_LEAD else it + 1 }
+        } else 0
+        val body = (if (cut > 0) "\u2026" else "") + flat.substring(cut)
+        val shift = (if (cut > 0) 1 else 0) - cut
+
+        val prefix = if (fromMe) context.getString(R.string.main_sender_you, "") else ""
+        val snippet = SpannableString(prefix + body)
+        matches.forEach { match ->
+            val start = match.range.first + shift + prefix.length
+            val end = match.range.last + 1 + shift + prefix.length
+            if (start >= prefix.length && end <= snippet.length) {
+                snippet.setSpan(BackgroundColorSpan(highlightColor), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
             }
         }
+        return snippet
     }
 
     override fun areItemsTheSame(old: SearchResult, new: SearchResult): Boolean {
-        return old.conversation.id == new.conversation.id && old.messages > 0 == new.messages > 0
+        return old.conversation.id == new.conversation.id
     }
 
     override fun areContentsTheSame(old: SearchResult, new: SearchResult): Boolean {
-        return old.query == new.query && // Queries are the same
-                old.conversation.id == new.conversation.id // Conversation id is the same
-                && old.messages == new.messages // Result count is the same
+        return old.query == new.query &&
+                old.message?.id == new.message?.id &&
+                old.conversation.lastMessage?.id == new.conversation.lastMessage?.id
     }
 }
