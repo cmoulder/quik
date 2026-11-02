@@ -18,6 +18,7 @@
  */
 package dev.octoshrimpy.quik.interactor
 
+import io.reactivex.schedulers.Schedulers
 import dev.octoshrimpy.quik.manager.ShortcutManager
 import dev.octoshrimpy.quik.extensions.mapNotNull
 import dev.octoshrimpy.quik.model.Attachment
@@ -71,7 +72,9 @@ class SendNewMessage @Inject constructor(
             conversationRepo.updateConversations(threadIds)
             conversationRepo.markUnarchived(threadIds)
 
-            AndroidSchedulers.mainThread().scheduleDirect {
+            // Background thread: building shortcut icons loads contact photos, which Glide
+            // refuses to do on the main thread (photos silently fell back to a plain icon)
+            Schedulers.io().scheduleDirect {
                 threadIds.forEach { shortcutManager.getOrCreateShortcut(it) }
             }
 

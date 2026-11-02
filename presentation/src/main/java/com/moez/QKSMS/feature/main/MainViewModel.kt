@@ -396,6 +396,11 @@ class MainViewModel @Inject constructor(
             .subscribe()
 
         view.optionsItemIntent
+            .filter { itemId -> itemId == R.id.blocked_messages }
+            .autoDisposable(view.scope())
+            .subscribe { navigator.showBlockedMessages() }
+
+        view.optionsItemIntent
             .filter { itemId -> itemId == R.id.select_all }
             .autoDisposable(view.scope())
             .subscribe { view.toggleSelectAll() }

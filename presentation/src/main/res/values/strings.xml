@@ -342,6 +342,7 @@
     <string name="blocking_drop_summary">Drop incoming messages from blocked numbers and unknown senders instead of hiding them</string>
     <string name="blocking_drop_filtered_title">Drop filtered messages</string>
     <string name="blocking_drop_filtered_summary">Drop incoming messages that match a content filter instead of hiding them</string>
+    <string name="blocked_messages_home">Home</string>
     <string name="blocked_by_content_filter">Content filter</string>
     <string name="blocked_by_unknown_sender">Not in contacts</string>
     <string name="blocked_numbers_unknown_title">Block unknown senders</string>

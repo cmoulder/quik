@@ -95,6 +95,9 @@ class BlockedMessagesAdapter @Inject constructor(
         binding.reason.isVisible = binding.reason.text.isNotEmpty()
     }
 
+    // Select all collects ids by position, so they must be conversation ids
+    override fun getItemId(position: Int): Long = getItem(position)?.id ?: -1
+
     override fun getItemViewType(position: Int): Int {
         val conversation = getItem(position)
         return if (conversation?.unread == false) 1 else 0

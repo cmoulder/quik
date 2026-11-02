@@ -95,6 +95,9 @@ class BlockedMessagesController : QkController<BlockedMessagesControllerBinding,
         blockedMessagesAdapter.updateData(state.data)
 
         val toolbarMenu = themedActivity?.findViewById<Toolbar>(R.id.toolbar)?.menu
+        toolbarMenu?.findItem(R.id.home_screen)?.isVisible = state.selected == 0
+        toolbarMenu?.findItem(R.id.select_all)?.isVisible =
+            blockedMessagesAdapter.itemCount > 1 && state.selected > 0
         toolbarMenu?.findItem(R.id.block)?.isVisible = state.selected > 0
         toolbarMenu?.findItem(R.id.delete)?.isVisible = state.selected > 0
 
@@ -105,6 +108,8 @@ class BlockedMessagesController : QkController<BlockedMessagesControllerBinding,
     }
 
     override fun clearSelection() = blockedMessagesAdapter.clearSelection()
+
+    override fun toggleSelectAll() = blockedMessagesAdapter.toggleSelectAll()
 
     override fun showBlockingDialog(conversations: List<Long>, block: Boolean) {
         blockingDialog.show(activity!!, conversations, block)

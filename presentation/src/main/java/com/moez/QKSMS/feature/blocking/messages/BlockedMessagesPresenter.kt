@@ -45,6 +45,16 @@ class BlockedMessagesPresenter @Inject constructor(
                 .subscribe { newState { copy() } }
 
         view.optionsItemIntent
+                .filter { itemId -> itemId == R.id.home_screen }
+                .autoDisposable(view.scope())
+                .subscribe { navigator.showMainActivity() }
+
+        view.optionsItemIntent
+                .filter { itemId -> itemId == R.id.select_all }
+                .autoDisposable(view.scope())
+                .subscribe { view.toggleSelectAll() }
+
+        view.optionsItemIntent
                 .withLatestFrom(view.selectionChanges) { itemId, conversations ->
                     when (itemId) {
                         R.id.block -> {

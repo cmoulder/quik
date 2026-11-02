@@ -141,6 +141,12 @@ class Navigator @Inject constructor(
         startActivity(Intent(context, BlockingActivity::class.java))
     }
 
+    /** Opens the Blocked messages list directly, skipping the Blocking settings screen */
+    fun showBlockedMessages() {
+        startActivity(Intent(context, BlockingActivity::class.java)
+            .putExtra(BlockingActivity.EXTRA_SCREEN, BlockingActivity.SCREEN_BLOCKED_MESSAGES))
+    }
+
     fun viewFile(uri: Uri, mimeType: String) {
         val intent = Intent(Intent.ACTION_VIEW)
                 .setDataAndType(uri, mimeType.lowercase())

@@ -244,6 +244,8 @@ class MainActivity : QkThemedActivity(), MainView {
         binding.toolbarTitle.setVisible(binding.toolbarSearch.visibility != View.VISIBLE)
 
         binding.toolbar.menu.apply {
+            findItem(R.id.blocked_messages)?.isVisible =
+                state.page is Inbox && selectedConversations == 0
             findItem(R.id.select_all)?.isVisible =
                 (conversationsAdapter.itemCount > 1) && selectedConversations != 0
             findItem(R.id.archive)?.isVisible =
@@ -262,7 +264,7 @@ class MainActivity : QkThemedActivity(), MainView {
             findItem(R.id.rename)?.isVisible = selectedConversations == 1
         }
 
-        binding.drawer.rateLayout.setVisible(state.showRating)
+        binding.drawer.rateLayout.setVisible(false) // "Star us on GitHub" prompt removed
 
         binding.compose.setVisible(state.page is Inbox || state.page is Archived)
         conversationsAdapter.emptyView = binding.empty.takeIf {

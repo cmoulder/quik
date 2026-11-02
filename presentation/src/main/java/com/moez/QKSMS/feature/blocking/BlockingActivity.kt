@@ -18,6 +18,7 @@
  */
 package dev.octoshrimpy.quik.feature.blocking
 
+import dev.octoshrimpy.quik.feature.blocking.messages.BlockedMessagesController
 import android.os.Bundle
 import com.bluelinelabs.conductor.Conductor
 import com.bluelinelabs.conductor.Router
@@ -28,6 +29,11 @@ import dev.octoshrimpy.quik.common.base.QkThemedActivity
 import dev.octoshrimpy.quik.databinding.ContainerActivityBinding
 
 class BlockingActivity : QkThemedActivity() {
+
+    companion object {
+        const val EXTRA_SCREEN = "screen"
+        const val SCREEN_BLOCKED_MESSAGES = "blockedMessages"
+    }
 
     private lateinit var router: Router
     private lateinit var binding: ContainerActivityBinding
@@ -40,7 +46,11 @@ class BlockingActivity : QkThemedActivity() {
 
         router = Conductor.attachRouter(this, binding.container, savedInstanceState)
         if (!router.hasRootController()) {
-            router.setRoot(RouterTransaction.with(BlockingController()))
+            val root = when (intent.getStringExtra(EXTRA_SCREEN)) {
+                SCREEN_BLOCKED_MESSAGES -> BlockedMessagesController()
+                else -> BlockingController()
+            }
+            router.setRoot(RouterTransaction.with(root))
         }
     }
 

@@ -354,28 +354,77 @@ class SyncRepositoryImpl @Inject constructor(
 
     override fun syncContacts() {
         // Load all the contacts
-        var contacts = getContacts()
+        val contacts = getContacts()
+
+        // Contact groups come from the contacts provider, not realm, so read them up front too
+        val contactGroups = getContactGroups(contacts)
 
         Realm.getDefaultInstance()?.use { realm ->
-            val recipients = realm.where(Recipient::class.java).findAll()
+            // Work out every recipient's contact BEFORE taking the write lock. Previously this
+            // matching ran inside the transaction, comparing every recipient against every
+            // contact number, which could hold the lock for over a minute and stall sending
+            val recipients = realm.copyFromRealm(realm.where(Recipient::class.java).findAll())
+            val matcher = ContactMatcher(contacts)
+            val contactByRecipientId = recipients.associate { recipient ->
+                recipient.id to matcher.find(recipient.address)?.lookupKey
+            }
 
             realm.executeTransaction {
                 realm.delete(Contact::class.java)
                 realm.delete(ContactGroup::class.java)
 
-                contacts = realm.copyToRealmOrUpdate(contacts)
-                realm.insertOrUpdate(getContactGroups(contacts))
+                val managedContacts = realm.copyToRealmOrUpdate(contacts)
+                realm.insertOrUpdate(contactGroups)
 
-                // Update all the recipients with the new contacts
+                val contactsByKey = managedContacts.associateBy { contact -> contact.lookupKey }
                 recipients.forEach { recipient ->
-                    recipient.contact = contacts.find { contact ->
-                        contact.numbers.any { phoneNumberUtils.compare(recipient.address, it.address) }
-                    }
+                    recipient.contact = contactByRecipientId[recipient.id]?.let(contactsByKey::get)
                 }
 
                 realm.insertOrUpdate(recipients)
             }
 
+        }
+    }
+
+    /**
+     * Finds the contact for a phone number. Contact numbers are filed under their last 7
+     * digits, so each lookup only fully compares the one or two contact numbers that share
+     * those digits, instead of every contact number. The final decision still uses the same
+     * strict [PhoneNumberUtils.compare], so results are identical to comparing every pair
+     */
+    private inner class ContactMatcher(private val contacts: List<Contact>) {
+        private val byKey = HashMap<String, MutableList<Pair<String, Contact>>>()
+
+        init {
+            contacts.forEach { contact ->
+                contact.numbers.forEach { number ->
+                    key(number.address)?.let { key ->
+                        byKey.getOrPut(key) { mutableListOf() } += number.address to contact
+                    }
+                }
+            }
+        }
+
+        // Last 7 digits, or the whole number if shorter. Null for addresses with letters
+        // (alphanumeric senders, emails), which fall back to checking every contact
+        private fun key(address: String): String? {
+            if (address.any { it.isLetter() }) return null
+            val digits = address.filter { it.isDigit() }
+            if (digits.isEmpty()) return null
+            return digits.takeLast(7)
+        }
+
+        fun find(address: String): Contact? {
+            val key = key(address)
+                ?: return contacts.firstOrNull { contact ->
+                    contact.numbers.any { phoneNumberUtils.compare(address, it.address) }
+                }
+
+            // Same first-match order as before: candidates are in contact order
+            return byKey[key]
+                ?.firstOrNull { (number, _) -> phoneNumberUtils.compare(address, number) }
+                ?.second
         }
     }
 
